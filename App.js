@@ -2,6 +2,7 @@ import { ActivityIndicator, StyleSheet } from 'react-native';
 import CategoryScreen from './src/screens/CategoryScreen';
 import { useFonts } from 'expo-font'
 import { useState } from 'react';
+import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen';
 
 export default function App() {
 
@@ -23,7 +24,14 @@ export default function App() {
 
   return (
     <>
-      <CategoryScreen onSelectCategoryEvent={onSelectCategory}/>
+      {
+        categorySelected 
+        ?
+        <ProductsByCategoryScreen category={categorySelected} onSelectCategoryEvent={onSelectCategory}/> 
+        :
+        <CategoryScreen onSelectCategoryEvent={onSelectCategory}/>
+
+      }
     </>
   );
 }

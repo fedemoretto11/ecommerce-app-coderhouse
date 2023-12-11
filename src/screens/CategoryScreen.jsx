@@ -11,7 +11,7 @@ const CategoryScreen = ({ onSelectCategoryEvent }) => {
 
   return (
     <>
-      <Header title='Categorias'/>
+      <Header title='Categorias' isCategory={false}/>
       <FlatList 
         data={categories_data}
         renderItem={renderCategoryItem}
