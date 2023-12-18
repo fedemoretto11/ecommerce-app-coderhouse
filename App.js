@@ -1,12 +1,10 @@
 import { ActivityIndicator, StyleSheet } from 'react-native';
-import CategoryScreen from './src/screens/CategoryScreen';
 import { useFonts } from 'expo-font'
-import { useState } from 'react';
-import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen';
+
+import Navigator from './src/navigator/Navigator';
 
 export default function App() {
 
-  const [categorySelected, setCategorySelected] = useState('')
 
   const [fontLoaded] = useFonts({
     'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf'),
@@ -17,22 +15,10 @@ export default function App() {
 
   if (!fontLoaded) return <ActivityIndicator />
 
-  const onSelectCategory = (category) => {
-    setCategorySelected(category)
-  }
 
 
   return (
-    <>
-      {
-        categorySelected 
-        ?
-        <ProductsByCategoryScreen category={categorySelected} onSelectCategoryEvent={onSelectCategory}/> 
-        :
-        <CategoryScreen onSelectCategoryEvent={onSelectCategory}/>
-
-      }
-    </>
+    <Navigator />
   );
 }
 

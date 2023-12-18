@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import products_data from '../data/products-data.json'
 import ProductItem from '../components/ProductItem'
-import Header from '../components/Header'
 import Search from '../components/Search'
 
-const ProductsByCategoryScreen = ({ category, onSelectCategoryEvent }) => {
+const ProductsByCategoryScreen = ({ navigation, route }) => {
 
   const [productsByCategory, setProductsByCategory] = useState([])
   const [search, setSearch] = useState('')
+
+  const { category } = route.params
 
   useEffect(() => {
     const productsFilterByCategory = products_data.filter(product => product.category === category)
@@ -17,7 +18,7 @@ const ProductsByCategoryScreen = ({ category, onSelectCategoryEvent }) => {
   },[category, search])
 
   const renderProductItem = ({ item }) => (
-    <ProductItem product={item} />
+    <ProductItem product={item} navigation={navigation}/>
   )
 
   const onSearch = (search) => {
@@ -27,7 +28,6 @@ const ProductsByCategoryScreen = ({ category, onSelectCategoryEvent }) => {
 
   return (
     <>
-      <Header title={category} isCategory={true} onSelectCategoryEvent={onSelectCategoryEvent} />
       <Search onSearchHandlerEvent={onSearch} />
       <FlatList 
         data={productsByCategory}
