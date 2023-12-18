@@ -34,7 +34,7 @@ const ProductDetailScreen = ({ productId }) => {
         <ActivityIndicator />
         :
         <>
-          <Header title={productSelected.name} isCategory={false}/>
+          <Header title={productSelected.name}/>
           <ScrollView >
             <Image
               style={styles.imageProduct}
