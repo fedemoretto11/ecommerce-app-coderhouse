@@ -3,14 +3,16 @@ import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacit
 import { COLORS } from '../global/colors.js'
 
 import products_data from '../data/products-data.json'
-import Header from '../components/Header'
 
 
-const ProductDetailScreen = ({ productId }) => {
+const ProductDetailScreen = ({ route }) => {
 
   const [productSelected, setProductSelected] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   console.log(productSelected)
+
+  const { product } = route.params
+  const productId = product.id
 
   // Para chequear si es o no landascape
   // const [isPortrait, setIsPortrait] = useState(true)
@@ -34,7 +36,6 @@ const ProductDetailScreen = ({ productId }) => {
         <ActivityIndicator />
         :
         <>
-          <Header title={productSelected.name}/>
           <ScrollView >
             <Image
               style={styles.imageProduct}
