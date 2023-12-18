@@ -9,7 +9,10 @@ const Header = ({ title, isCategory, onSelectCategoryEvent }) => {
 
   return (
     <>
-      {isCategory ? (
+      {
+      isCategory 
+      ? 
+      (
         <View style={styles.headerContainerTrue}>
           <AntDesign
             name="arrowleft"
@@ -19,7 +22,9 @@ const Header = ({ title, isCategory, onSelectCategoryEvent }) => {
           />
           <Text style={styles.headerTitle}>{title}</Text>
         </View>
-      ) : (
+      ) 
+      : 
+      (
         <View style={styles.headerContainer}>
           <Text style={styles.headerTitle}>{title}</Text>
         </View>

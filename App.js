@@ -3,10 +3,12 @@ import CategoryScreen from './src/screens/CategoryScreen';
 import { useFonts } from 'expo-font'
 import { useState } from 'react';
 import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen';
+import ProductDetailScreen from './src/screens/ProductDetailScreen';
 
 export default function App() {
 
   const [categorySelected, setCategorySelected] = useState('')
+  const [productIdSelected, setProductIdSelected] = useState(null)
 
   const [fontLoaded] = useFonts({
     'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf'),
@@ -21,15 +23,23 @@ export default function App() {
     setCategorySelected(category)
   }
 
+  const onSelectProductId = (productId) => {
+    setProductIdSelected(productId)
+  }
+
 
   return (
     <>
       {
-        categorySelected 
+        productIdSelected
         ?
-        <ProductsByCategoryScreen category={categorySelected} onSelectCategoryEvent={onSelectCategory}/> 
+        <ProductDetailScreen productId={productIdSelected} />
         :
-        <CategoryScreen onSelectCategoryEvent={onSelectCategory}/>
+          categorySelected
+          ?
+          <ProductsByCategoryScreen category={categorySelected} onSelectCategoryEvent={onSelectCategory} onSelectProductIdEvent={onSelectProductId}/> 
+          :
+          <CategoryScreen onSelectCategoryEvent={onSelectCategory}  />
 
       }
     </>
