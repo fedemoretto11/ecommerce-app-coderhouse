@@ -29,16 +29,17 @@ const ProductDetailScreen = ({ productId }) => {
   return (
     <>
       {
-        isLoading
+        !productSelected
         ?
         <ActivityIndicator />
         :
         <>
           <Header title={productSelected.name} isCategory={false}/>
-          <ScrollView>
-            <Image 
-              source={{ uri: productSelected.images[0] }}
+          <ScrollView >
+            <Image
+              style={styles.imageProduct}
               resizeMode='cover'
+              source={{uri: productSelected.thumbnail }}
             />
             <View style={styles.detailContainer}>
               <Text style={styles.title}>{productSelected.title}</Text>
@@ -107,4 +108,4 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     borderRadius: 10,
   }
-  })
+})
