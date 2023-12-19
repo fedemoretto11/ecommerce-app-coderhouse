@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontFamily: "Raleway-Bold",
     fontSize: 25,
+    textTransform: 'capitalize'
   }
 });
