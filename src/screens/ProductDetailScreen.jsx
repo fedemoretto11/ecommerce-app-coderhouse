@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react'
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { COLORS } from '../global/colors.js'
+import { useSelector } from 'react-redux'
 
-import products_data from '../data/products-data.json'
 
-
-const ProductDetailScreen = ({ route }) => {
+const ProductDetailScreen = () => {
 
   const [productSelected, setProductSelected] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  // Para aplicar mas adelante 
+  // const [isLoading, setIsLoading] = useState(true) 
   console.log(productSelected)
 
-  const { product } = route.params
-  const productId = product.id
+  const product = useSelector(state => state.shopReducer.productSelected)
 
   // Para chequear si es o no landascape
   // const [isPortrait, setIsPortrait] = useState(true)
@@ -22,16 +21,15 @@ const ProductDetailScreen = ({ route }) => {
   //   }, [height])
 
   useEffect(()=>{
-    const productFound = products_data.find(product => product.id === productId)
-    setProductSelected(productFound)
-    setIsLoading(false)
-  }, [productId])
+    setProductSelected(product)
+    // setIsLoading(false)
+  }, [product])
 
 
   return (
     <>
       {
-        !productSelected
+        !product
         ?
         <ActivityIndicator />
         :
