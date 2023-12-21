@@ -7,10 +7,10 @@ import ProductsScreen from '../screens/ProductsByCategoryScreen';
 import ProductDetailScreen from '../screens/ProductDetailScreen';
 import Header from '../components/Header';
 
+const Stack = createNativeStackNavigator();
 
 const ShopNavigator = () => {
 
-  const Stack = createNativeStackNavigator();
 
 
   return (
