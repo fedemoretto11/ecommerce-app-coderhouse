@@ -1,8 +1,7 @@
 import { FlatList, StyleSheet } from 'react-native'
-
-// import categories_data from '../data/categories-data.json'
-import CategoryItem from '../components/CategoryItem'
 import { useSelector } from 'react-redux'
+
+import CategoryItem from '../components/CategoryItem'
 
 const CategoryScreen = ({ navigation }) => {
 
