@@ -7,9 +7,16 @@ const Header = ({ title, navigation }) => {
 
   return (
         <View style={styles.headerContainer}>
-          <TouchableOpacity onPress={navigation.goBack}>
+          {
+            navigation.canGoBack()
+            ?
+            <TouchableOpacity onPress={navigation.goBack}>
                 <AntDesign name="caretleft" size={20} color="white" />
             </TouchableOpacity>
+            :
+            <View /> // Forma provisoria
+          }
+          
           <Text style={styles.headerTitle}>{title}</Text>
         </View>
   );
@@ -30,5 +37,6 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontFamily: "Raleway-Bold",
     fontSize: 25,
+    textTransform: 'capitalize'
   }
 });

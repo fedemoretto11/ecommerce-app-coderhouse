@@ -7,14 +7,13 @@ import ProductsScreen from '../screens/ProductsByCategoryScreen';
 import ProductDetailScreen from '../screens/ProductDetailScreen';
 import Header from '../components/Header';
 
+const Stack = createNativeStackNavigator();
 
-const Navigator = () => {
+const ShopNavigator = () => {
 
-  const Stack = createNativeStackNavigator();
 
 
   return (
-    <NavigationContainer>
       <Stack.Navigator
         initialRouteName='Categorias'
         screenOptions={
@@ -40,10 +39,9 @@ const Navigator = () => {
 
 
 
-    </NavigationContainer>
   )
 }
-export default Navigator
+export default ShopNavigator
 
 
 const styles = StyleSheet.create({
