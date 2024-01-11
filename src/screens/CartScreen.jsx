@@ -3,11 +3,18 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native
 import CartItem from "../components/Cartitem";
 import { COLORS } from "../global/colors";
 import { useSelector } from "react-redux";
+import { usePostOrderMutation } from "../services/shopService";
 
 const CartScreen = () => {
   
   const cartItems = useSelector(state => state.cartReducer.value.items)
   const total = useSelector(state => state.cartReducer.value.total)
+
+  const [triggerPost, result ] = usePostOrderMutation()
+
+  const confirmCart = () => {
+    triggerPost({total, cartItems, user: 'userLogged'})
+  }
   
   
 
@@ -22,7 +29,7 @@ const CartScreen = () => {
       />
       <View style={styles.cartConfirm}>
         <Text style={styles.totalPrice}>Total: USD {total}</Text>
-        <TouchableOpacity style={styles.confirmButton} onPress={null}>
+        <TouchableOpacity style={styles.confirmButton} onPress={confirmCart}>
           <Text style={styles.textConfirm}>Confirmar</Text>
         </TouchableOpacity>
       </View>
