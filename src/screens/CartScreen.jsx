@@ -1,27 +1,22 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import cartData from "../data/cart-data.json";
 import CartItem from "../components/Cartitem";
-import { useEffect, useState } from "react";
 import { COLORS } from "../global/colors";
+import { useSelector } from "react-redux";
 
 const CartScreen = () => {
-  const [total, setTotal] = useState();
-
-  useEffect(() => {
-    const totalCart = cartData.reduce(
-      (acc, item) => (acc += item.price * item.quantity),
-      0
-    );
-    setTotal(totalCart);
-  }, []);
+  
+  const cartItems = useSelector(state => state.cartReducer.value.items)
+  const total = useSelector(state => state.cartReducer.value.total)
+  
+  
 
   const renderCartItem = ({ item }) => <CartItem item={item} />;
 
   return (
     <View style={styles.cartContainer}>
       <FlatList
-        data={cartData}
+        data={cartItems}
         renderItem={renderCartItem}
         keyExtractor={(item) => item.id}
       />
