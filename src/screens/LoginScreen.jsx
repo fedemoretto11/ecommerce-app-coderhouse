@@ -11,11 +11,14 @@ const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const [triggerLogin, result] = useLoginMutation()
+    const [triggerLogin, result] = useLoginMutation();
 
     const onSubmit = () => {
-      triggerLogin({email, password})
+      triggerLogin({ email, password })
       console.log(result)
+      if (result.isError){
+        console.log(result.error)
+      }
     }
     const dispatch = useDispatch()
 

@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_KEY, BASE_AUTH_URL } from "../firebase/db";
 
 
@@ -13,8 +13,8 @@ export const authApi = createApi({
         body: userData
       })
     }),
-    logIn: builder.mutation({
-      query: ({...userData}) => ({
+    login: builder.mutation({
+      query: ({ ...userData }) => ({
         url: `accounts:signInWithPassword?key=${API_KEY}`,
         method: 'POST',
         body: userData
@@ -24,4 +24,7 @@ export const authApi = createApi({
 })
 
 
-export const { useLoginMutation, useSignUpMutation } = authApi;
+export const { 
+  useLoginMutation, 
+  useSignUpMutation 
+} = authApi

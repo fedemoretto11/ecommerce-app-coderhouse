@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { StyleSheet, Text, View, TextInput } from 'react-native'
 import { COLORS } from '../global/colors'
