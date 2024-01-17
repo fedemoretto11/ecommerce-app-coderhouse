@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import categories_data from '../data/categories-data.json';
 import products_data from '../data/products-data.json';
 
+
+
 export const shopSlice = createSlice({
   name: 'shop',
   initialState: {
@@ -25,6 +27,9 @@ export const shopSlice = createSlice({
   }
 });
 
-export const { setCategorySelected, setProductIdSelected } = shopSlice.actions;
+export const { 
+  setCategorySelected, 
+  setProductIdSelected 
+} = shopSlice.actions;
 
 export default shopSlice.reducer;
