@@ -15,7 +15,11 @@ const SignupScreen = ({ navigation }) => {
 
   const onSubmit = () => {
     triggerSignup({ email, password });
-    console.log(result);
+    // console.log(result);
+    if (result.isError) {
+      console.log(result.error.data)
+    }
+    
   };
 
   const dispatch = useDispatch();
