@@ -1,15 +1,57 @@
 import { useState } from 'react'
 import { MaterialIcons} from '@expo/vector-icons'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { 
+  Image, 
+  StyleSheet, 
+  Text, 
+  TouchableOpacity, 
+  View 
+} from 'react-native'
+import * as ImagePicker from 'expo-image-picker';
+
 import { COLORS } from '../global/colors'
+import { useDispatch, useSelector } from 'react-redux';
+import { setProfilePicture } from '../features/authSlice';
+import { usePostProfilePictureMutation } from '../services/shopService';
 
-const ImageSelectorScreen = () => {
 
+
+const ImageSelectorScreen = ({ navigation }) => {
+
+  const localId = useSelector(state => state.authReducer.localId)
   const [image, setImage] = useState("")
+  const dispatch = useDispatch();
 
-  const verifyCameraPermision = async () => {}
-  const pickImage = async () => {}
-  const confirmImage = () => {}
+  const [triggerPostProfilePicture, result] = usePostProfilePictureMutation()
+
+  const verifyCameraPermision = async () => {
+    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    return granted ? true : false
+  }
+  const pickImage = async () => {
+    const isCameraOk = await verifyCameraPermision();
+    if (isCameraOk) {
+      let result = await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [1,1],
+        base64: true,
+        quality: 0.2
+      })
+      if (!result.canceled) {
+        setImage(`data:image/jpeg;base64,${result.assets[0].base64}`)
+        
+      }
+    }
+    else {
+      console.log("No se han otorgado los permisos de camara")
+    }
+  }
+  const confirmImage = () => {
+    dispatch(setProfilePicture(image))
+    triggerPostProfilePicture({localId, image})
+    navigation.goBack()
+  }
 
 
 
@@ -19,9 +61,9 @@ const ImageSelectorScreen = () => {
       {
         image 
         ? 
-        <View style={imageContainer}>
+        <View style={styles.imageContainer}>
           <Image 
-            src={{ uri: image }}
+            source={{ uri: image }}
             style={styles.image}
             resizeMode='cover'
           />

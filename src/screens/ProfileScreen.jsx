@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { useSelector } from 'react-redux'
 
 const user_data = {
   name: "Federico",
@@ -12,7 +13,7 @@ const user_data = {
 
 const ProfileScreen = ({ navigation }) => {
 
-  const [image, setImage] = useState(null)
+  const image = useSelector(state => state.authReducer.profilePicture)
 
   return (
     <View style={styles.container}>
@@ -27,9 +28,12 @@ const ProfileScreen = ({ navigation }) => {
           ]}
         >
           {
-            image ? null : 
+            image 
+            ? 
+            null 
+            : 
             <Image 
-              source={require('../../assets/img/usuario.png')}
+              source={{ uri: image }}
               style={styles.profilePicture}
               resizeMode='contain'
             />
