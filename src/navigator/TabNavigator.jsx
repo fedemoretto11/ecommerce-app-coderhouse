@@ -2,8 +2,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StyleSheet } from 'react-native'
 import { COLORS } from '../global/colors.js'
 
-import { NavigationContainer } from '@react-navigation/native';
-
 import ShopNavigator from './ShopNavigator';
 import CartNavigator from './CartNavigator';
 import OrderNavigator from './OrderNavigator.jsx';
