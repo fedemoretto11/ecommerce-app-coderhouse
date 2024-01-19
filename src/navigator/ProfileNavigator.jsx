@@ -1,7 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { StyleSheet } from "react-native";
+
 import Header from "../components/Header";
 import ProfileScreen from "../screens/ProfileScreen";
-import { StyleSheet } from "react-native";
+import ImageSelectorScreen from "../screens/ImageSelectorScreen";
 
 
 const ProfileNavigator = () => {
@@ -11,7 +13,7 @@ const ProfileNavigator = () => {
   return (
   
     <Stack.Navigator
-      initialRouteName="Perfil"
+      initialRouteName="Profile"
       screenOptions={
         ({ navigation, route}) => ({
           header: () => <Header title={route.name} navigation={navigation} />
@@ -20,8 +22,13 @@ const ProfileNavigator = () => {
     >
 
       <Stack.Screen 
-        name="Perfil"
+        name="Profile"
         component={ProfileScreen}
+      />
+
+      <Stack.Screen 
+        name="ImageSelector"
+        component={ImageSelectorScreen}
       />
 
 

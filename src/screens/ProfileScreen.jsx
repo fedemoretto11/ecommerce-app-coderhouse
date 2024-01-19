@@ -10,7 +10,7 @@ const user_data = {
 }
 
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
 
   const [image, setImage] = useState(null)
 
@@ -18,7 +18,7 @@ const ProfileScreen = () => {
     <View style={styles.container}>
       <View>
         <Pressable 
-          onPress={null}
+          onPress={() => navigation.navigate('ImageSelector')}
           style={({ pressed }) => [
             {
               backgroundColor: pressed ? "#DCDCDC" : "#E8E8E8",

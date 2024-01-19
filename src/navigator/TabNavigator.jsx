@@ -49,7 +49,7 @@ const TabNavigator = () => {
           }}
         />
         <Tab.Screen
-          name='ProfileStacj'
+          name='ProfileStack'
           component={ProfileNavigator}
           options={{
             tabBarIcon: ({focused}) => (
