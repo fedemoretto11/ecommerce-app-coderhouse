@@ -7,6 +7,7 @@ import CartNavigator from './CartNavigator';
 import OrderNavigator from './OrderNavigator.jsx';
 
 import { FontAwesome, Entypo, FontAwesome5 } from '@expo/vector-icons';
+import ProfileNavigator from './ProfileNavigator.jsx';
 
 const TabNavigator = () => {
 
@@ -44,6 +45,19 @@ const TabNavigator = () => {
           options={{
             tabBarIcon: ({focused}) => (
               <FontAwesome5 name="clipboard-list" size={24} color={focused ? COLORS.primary : COLORS.gray} />
+            )
+          }}
+        />
+        <Tab.Screen
+          name='ProfileStacj'
+          component={ProfileNavigator}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <FontAwesome5 
+                name="user" 
+                size={24} 
+                color={focused ? COLORS.primary : COLORS.gray} 
+              />
             )
           }}
         />
