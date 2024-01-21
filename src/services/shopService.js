@@ -32,7 +32,10 @@ export const shopApi = createApi({
           image
         }
       })
-    })
+    }),
+    getOrders: builder.query({
+      query: () => 'orders.json'
+    }),
 
   })
 
@@ -44,5 +47,6 @@ export const {
   useGetProductsByCategoryQuery,
   usePostOrderMutation, 
   useGetProfilePictureQuery,
-  usePostProfilePictureMutation
+  usePostProfilePictureMutation,
+  useGetOrdersQuery
 } = shopApi
