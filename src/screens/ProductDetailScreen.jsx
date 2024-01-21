@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react'
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { COLORS } from '../global/colors.js'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem } from '../features/cartSlice.js'
 
 
 const ProductDetailScreen = () => {
 
+  const dispatch = useDispatch()
+
   const [productSelected, setProductSelected] = useState({})
   // Para aplicar mas adelante 
   // const [isLoading, setIsLoading] = useState(true) 
-  console.log(productSelected)
+  // console.log(productSelected)
 
   const product = useSelector(state => state.shopReducer.productSelected)
 
@@ -24,6 +27,11 @@ const ProductDetailScreen = () => {
     setProductSelected(product)
     // setIsLoading(false)
   }, [product])
+
+  const onAddToCart = () => {
+    dispatch(addItem({...productSelected, quantity: 1}))
+    console.log("Comprar")
+  }
 
 
   return (
@@ -44,7 +52,7 @@ const ProductDetailScreen = () => {
               <Text style={styles.title}>{productSelected.title}</Text>
               <Text style={styles.description}>{productSelected.description}</Text>
               <Text style={styles.price}>$ {productSelected.price}</Text>
-              <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity style={styles.buyButton} onPress={onAddToCart}>
                 <Text style={styles.buyText}>Comprar</Text>
               </TouchableOpacity>
             </View>
