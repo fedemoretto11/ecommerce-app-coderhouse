@@ -21,19 +21,23 @@ const ProfileScreen = ({ navigation }) => {
         <Pressable 
           onPress={() => navigation.navigate('ImageSelector')}
           style={({ pressed }) => [
-            {
-              backgroundColor: pressed ? "#DCDCDC" : "#E8E8E8",
-            },
+            // {
+            //   backgroundColor: pressed ? "#DCDCDC" : "#E8E8E8",
+            // },
             styles.imageContainer
           ]}
         >
           {
             image 
             ? 
-            null 
-            : 
             <Image 
               source={{ uri: image }}
+              style={styles.profilePicture}
+              resizeMode='contain'
+            />
+            : 
+            <Image 
+              source={require('../../assets/img/usuario.png')}
               style={styles.profilePicture}
               resizeMode='contain'
             />
@@ -64,7 +68,8 @@ const styles = StyleSheet.create({
   },
   profilePicture: {
     width: 100,
-    height: 100
+    height: 100,
+    borderRadius: 100
   },
   userDataContainer: {
     marginTop: 10

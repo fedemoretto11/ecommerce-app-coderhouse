@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     gap: 10
   },
   btnConfirm: {
-    backgroundColor: '#00FF00',
+    backgroundColor: COLORS.confirm,
     paddingHorizontal: 50
   }
 })
