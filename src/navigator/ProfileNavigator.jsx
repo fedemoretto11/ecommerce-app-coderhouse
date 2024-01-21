@@ -13,7 +13,7 @@ const ProfileNavigator = () => {
   return (
   
     <Stack.Navigator
-      initialRouteName="Profile"
+      initialRouteName="Perfil"
       screenOptions={
         ({ navigation, route}) => ({
           header: () => <Header title={route.name} navigation={navigation} />
@@ -22,12 +22,12 @@ const ProfileNavigator = () => {
     >
 
       <Stack.Screen 
-        name="Profile"
+        name="Perfil"
         component={ProfileScreen}
       />
 
       <Stack.Screen 
-        name="ImageSelector"
+        name="Seleccionar Imagen"
         component={ImageSelectorScreen}
       />
 

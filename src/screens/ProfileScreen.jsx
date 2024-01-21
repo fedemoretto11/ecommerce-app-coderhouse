@@ -1,14 +1,7 @@
-import { useState } from 'react'
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { useSelector } from 'react-redux'
 
-const user_data = {
-  name: "Federico",
-  role: "Crack",
-  level: 5,
-  address: "H Irigoyen 146",
-  city: "Maipu"
-}
+import user_data from '../data/user-data.json'
 
 
 const ProfileScreen = ({ navigation }) => {
@@ -19,13 +12,8 @@ const ProfileScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View>
         <Pressable 
-          onPress={() => navigation.navigate('ImageSelector')}
-          style={({ pressed }) => [
-            // {
-            //   backgroundColor: pressed ? "#DCDCDC" : "#E8E8E8",
-            // },
-            styles.imageContainer
-          ]}
+          onPress={() => navigation.navigate('Seleccionar Imagen')}
+          style={styles.imageContainer}
         >
           {
             image 
