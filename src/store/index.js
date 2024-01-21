@@ -1,9 +1,11 @@
+import { shopApi } from "../services/shopService";
+import { authApi } from "../services/authService";
+
 import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
+
 import shopReducer from "../features/shopSlice";
 import cartReducer from '../features/cartSlice';
-import { shopApi } from "../services/shopService";
-import { setupListeners } from "@reduxjs/toolkit/query";
-import { authApi } from "../services/authService";
 import authReducer from "../features/authSlice";
 
 

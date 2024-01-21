@@ -5,21 +5,40 @@ import { useSignUpMutation } from "../services/authService";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/authSlice";
 import { COLORS } from "../global/colors";
+import { signUpSchema } from "../validations/signUp";
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [emailError, setEmailError] = useState("")
+  const [passwordError, setPasswordError] = useState("")
+  const [confirmPasswordError, setConfirmPasswordError] = useState("")
+
   const [triggerSignup, result] = useSignUpMutation();
 
   const onSubmit = () => {
-    triggerSignup({ email, password });
-    // console.log(result);
-    if (result.isError) {
-      console.log(result.error.data)
+
+    try {
+      const validations = signUpSchema.validateSync({email, password, confirmPassword})
+      triggerSignup({ email, password });
+    } catch (error) {
+      console.log("Error al registrar");
+      switch(error.path) {
+        case 'email':
+          setEmailError(error.errors)
+          break
+        case 'password':
+          setPasswordError(error.errors)
+          break
+        case 'confirmPassword':
+          setConfirmPasswordError(error.errors)
+          break
+        default:
+          break
+      }
     }
-    
   };
 
   const dispatch = useDispatch();
@@ -32,11 +51,20 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Input label="Email:" onChange={setEmail} />
-      <Input label="Contraseña:" onChange={setPassword} isSecureEntry={true} />
+      <Input 
+        label="Email:" 
+        onChange={setEmail} 
+        error={emailError}
+      />
+      <Input 
+        label="Contraseña:" 
+        onChange={setPassword} 
+        error={passwordError} 
+        isSecureEntry={true} />
       <Input
         label="Repetir contraseña:"
         onChange={setConfirmPassword}
+        error={confirmPasswordError}
         isSecureEntry={true}
       />
       <TouchableOpacity style={styles.btn} onPress={onSubmit}>
