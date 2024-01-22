@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/authSlice'
 import { useLoginMutation } from '../services/authService'
+import { insertSession } from '../db'
 
 const LoginScreen = ({ navigation }) => {
 
@@ -13,6 +14,9 @@ const LoginScreen = ({ navigation }) => {
 
     const [triggerLogin, result] = useLoginMutation();
 
+    const dispatch = useDispatch()
+
+
     const onSubmit = () => {
       triggerLogin({ email, password })
       console.log(result)
@@ -20,12 +24,19 @@ const LoginScreen = ({ navigation }) => {
         console.log(result.error)
       }
     }
-    const dispatch = useDispatch()
 
     useEffect(()=>{
-        if(result.data){
-            dispatch(setUser(result.data))
-        }
+      if(result?.data){
+        console.log(result.data)
+        dispatch(setUser(result.data))
+        insertSession({
+          email: result.data.email,
+          token: result.data.idToken,
+          localId: result.data.localId
+        })
+          .then(result => console.log(result))
+          .catch(error => console.log(error.message))
+      }
     }, [result])
 
     return (

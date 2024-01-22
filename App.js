@@ -4,9 +4,14 @@ import { useFonts } from 'expo-font'
 import { Provider } from 'react-redux';
 import store from './src/store';
 import MainNavigator from './src/navigator/MainNavigator';
+import { init } from './src/db';
 
 
 export default function App() {
+
+  init()
+    .then(() => console.log("Databe inicializada"))
+    .catch(() => console.log("Error al inicializar", error.message))
 
 
   const [fontLoaded] = useFonts({

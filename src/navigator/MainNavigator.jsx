@@ -7,7 +7,11 @@ import {
 } from 'react-redux'
 import { useGetProfilePictureQuery } from '../services/shopService'
 import { useEffect } from 'react'
-import { setProfilePicture } from '../features/authSlice'
+import { 
+  setProfilePicture, 
+  setUser 
+} from '../features/authSlice'
+import { fetchSession } from '../db'
 
 const MainNavigator = () => {
   const user = useSelector(state => state.authReducer.user)
@@ -21,6 +25,22 @@ const MainNavigator = () => {
       dispatch(setProfilePicture(data.image))
     }
   },[data])
+
+  useEffect(()=>{
+    (async ()=>{
+        try{
+            const session = await fetchSession()
+            console.log("Session:", session)
+            if(session?.rows.length){
+                console.log("Se han encontrado datos de usuario")
+                const user = session.rows._array[0]
+                dispatch(setUser(user))
+            }
+        }catch(error){
+            console.log("Error al obtener datos del usuario local: ", error.message)
+        }
+    })()
+},[])
 
   return (
     <NavigationContainer>
