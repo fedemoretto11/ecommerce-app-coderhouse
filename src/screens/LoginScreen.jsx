@@ -71,18 +71,18 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       flex: 1,
-      gap: 10,
+      gap: 16,
     },
     btn: {
-      padding: 10,
+      padding: 14,
       backgroundColor: COLORS.secondary,
       borderRadius: 8,
-      margin: 5,
-  
+      margin: 8,
     },
     btnText: {
       color: "#fff",
-      fontFamily: "Raleway-Bold"
+      fontFamily: "Raleway-Bold",
+      fontSize: 18
     },
     altContainer: {
       flexDirection: 'row',
@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
     subtitle: {
       color: "#fff",
       fontFamily: "Raleway-Bold",
-      fontSize: 12,
+      fontSize: 16,
     },
     subtitleLink: {
       fontFamily: "Raleway-Light",
       color: "#fff",
-      fontSize: 11,
+      fontSize: 16,
       textDecorationLine: 'underline'
     }
   })

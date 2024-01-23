@@ -1,6 +1,8 @@
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
-import Card from "./Card";
 import { useDispatch } from "react-redux";
+
+import Card from "./Card";
+
 import { setCategorySelected } from "../features/shopSlice";
 
 const CategoryItem = ({ category, navigation }) => {
