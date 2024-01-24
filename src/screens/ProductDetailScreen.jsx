@@ -30,15 +30,19 @@ const ProductDetailScreen = () => {
 
   const {data: productById, isLoading, error } = useGetProductByIdQuery(productId)
 
+
+
   useEffect(()=>{
     if (!isLoading) {
       const productValue = Object.values(productById)
       setProductSelected(productValue[0])
     }
   }, [isLoading, productById])
+
+
   
   const onAddToCart = () => {
-    dispatch(addItem({...product, quantity: 1}))
+    dispatch(addItem({...productSelected, quantity: 1}))
     console.log("Comprar")
   }
 
@@ -51,7 +55,7 @@ const ProductDetailScreen = () => {
         <ActivityIndicator />
         :
         <>
-          <ScrollView >
+          <ScrollView>
             <Image
               style={styles.imageProduct}
               resizeMode='cover'
@@ -61,6 +65,7 @@ const ProductDetailScreen = () => {
               <Text style={styles.title}>{productSelected.title}</Text>
               <Text style={styles.description}>{productSelected.description}</Text>
               <Text style={styles.price}>$ {productSelected.price}</Text>
+              <Text style={styles.stock}>Stock: {productSelected.stock} unidades</Text>
               <TouchableOpacity style={styles.buyButton} onPress={onAddToCart}>
                 <Text style={styles.buyText}>Comprar</Text>
               </TouchableOpacity>
@@ -81,23 +86,30 @@ const styles = StyleSheet.create({
   imageProduct: {
     minWidth: 300,
     width: '100%',
-    height: 400,
+    height: 350,
 
-  },
-  imageProductLandscape: {
-    width: 200,
-    height: 200,
   },
   detailContainer: {
     alignItems: 'center',
   },
   title: {
     fontFamily: 'Raleway-Bold',
-    fontSize: 32,
+    fontSize: 30,
+    color: COLORS.secondary,
+    textAlign: 'center'
+
   },
   description: {
-    fontFamily: 'Raleway-Regular',
+    fontFamily: 'Raleway-Italic',
     fontSize: 20,
+    paddingHorizontal: 10,
+    color: COLORS.primary
+
+  },
+  stock: {
+    fontFamily: 'Raleway-Italic',
+    color: COLORS.secondary
+
   },
   price: {
     fontFamily: 'Raleway-Bold',
@@ -109,18 +121,13 @@ const styles = StyleSheet.create({
     width: 200,
     padding: 10,
     alignItems: 'center',
-    backgroundColor: 'green',
+    backgroundColor: COLORS.confirm,
     borderRadius: 10,
   },
   buyText: {
-    color: '#000'
-  },
-  buyAlt: {
-    marginTop: 10,
-    width: 200,
-    padding: 10,
-    alignItems: 'center',
-    backgroundColor: COLORS.primary,
-    borderRadius: 10,
+    fontFamily: 'Raleway-Bold',
+    color: COLORS.primary,
+    fontSize: 18,
+    paddingVertical: 3
   }
 })

@@ -1,8 +1,16 @@
-import { useEffect, useState } from 'react'
-import { FlatList, StyleSheet, Text } from 'react-native'
+import { 
+  useEffect, 
+  useState 
+} from 'react'
+import { 
+  FlatList, 
+  Text 
+} from 'react-native'
+import { useSelector } from 'react-redux'
+
 import ProductItem from '../components/ProductItem'
 import Search from '../components/Search'
-import { useSelector } from 'react-redux'
+
 import { useGetProductsByCategoryQuery } from '../services/shopService'
 
 const ProductsByCategoryScreen = ({ navigation }) => {
@@ -55,8 +63,3 @@ const ProductsByCategoryScreen = ({ navigation }) => {
 
 
 export default ProductsByCategoryScreen
-
-
-const styles = StyleSheet.create({
-
-})
