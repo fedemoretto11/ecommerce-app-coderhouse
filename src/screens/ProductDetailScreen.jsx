@@ -1,35 +1,44 @@
-import { useEffect, useState } from 'react'
-import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { 
+  useEffect, 
+  useState 
+} from 'react'
+import { 
+  ActivityIndicator, 
+  Image, 
+  ScrollView, 
+  StyleSheet, 
+  Text, 
+  TouchableOpacity, 
+  View 
+} from 'react-native'
+import { 
+  useDispatch, 
+  useSelector 
+} from 'react-redux'
+
 import { COLORS } from '../global/colors.js'
-import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '../features/cartSlice.js'
+import { useGetProductByIdQuery } from '../services/shopService.js'
 
 
 const ProductDetailScreen = () => {
 
   const dispatch = useDispatch()
-
   const [productSelected, setProductSelected] = useState({})
-  // Para aplicar mas adelante 
-  // const [isLoading, setIsLoading] = useState(true) 
-  // console.log(productSelected)
 
-  const product = useSelector(state => state.shopReducer.productSelected)
+  const productId = useSelector(state => state.shopReducer.productIdSelected)
 
-  // Para chequear si es o no landascape
-  // const [isPortrait, setIsPortrait] = useState(true)
-  // const { height, width } = useWindowDimensions()
-  // useEffect(() => {
-  //     height < width ? setIsPortrait(false) : setIsPortrait(true)
-  //   }, [height])
+  const {data: productById, isLoading, error } = useGetProductByIdQuery(productId)
 
   useEffect(()=>{
-    setProductSelected(product)
-    // setIsLoading(false)
-  }, [product])
-
+    if (!isLoading) {
+      const productValue = Object.values(productById)
+      setProductSelected(productValue[0])
+    }
+  }, [isLoading, productById])
+  
   const onAddToCart = () => {
-    dispatch(addItem({...productSelected, quantity: 1}))
+    dispatch(addItem({...product, quantity: 1}))
     console.log("Comprar")
   }
 
@@ -37,7 +46,7 @@ const ProductDetailScreen = () => {
   return (
     <>
       {
-        !product
+        !productSelected
         ?
         <ActivityIndicator />
         :
@@ -59,7 +68,6 @@ const ProductDetailScreen = () => {
           </ScrollView>
         </>
       }
-
     </>
   )
 }
