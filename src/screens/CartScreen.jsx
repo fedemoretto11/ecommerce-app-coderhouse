@@ -5,14 +5,21 @@ import {
   TouchableOpacity, 
   View 
 } from "react-native";
-import { useSelector } from "react-redux";
+import { 
+  useDispatch, 
+  useSelector 
+} from "react-redux";
 
 import { usePostOrderMutation } from "../services/shopService";
+
+import { cleanCart } from "../features/cartSlice";
 
 import CartItem from "../components/Cartitem";
 import { COLORS } from "../global/colors";
 
 const CartScreen = () => {
+
+  const dispatch = useDispatch()
   
   const cartItems = useSelector(state => state.cartReducer.value.items)
   const total = useSelector(state => state.cartReducer.value.total)
@@ -22,6 +29,7 @@ const CartScreen = () => {
 
   const confirmCart = () => {
     triggerPost({total, cartItems, user: user})
+    dispatch(cleanCart())
   }
   
   
