@@ -1,33 +1,46 @@
-import { useEffect, useState } from 'react'
-import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { 
+  useEffect, 
+  useState 
+} from 'react'
+import { 
+  ActivityIndicator, 
+  Image, 
+  ScrollView, 
+  StyleSheet, 
+  Text, 
+  TouchableOpacity, 
+  View 
+} from 'react-native'
+import { 
+  useDispatch, 
+  useSelector 
+} from 'react-redux'
+
 import { COLORS } from '../global/colors.js'
-import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '../features/cartSlice.js'
+import { useGetProductByIdQuery } from '../services/shopService.js'
 
 
 const ProductDetailScreen = () => {
 
   const dispatch = useDispatch()
-
   const [productSelected, setProductSelected] = useState({})
-  // Para aplicar mas adelante 
-  // const [isLoading, setIsLoading] = useState(true) 
-  // console.log(productSelected)
 
-  const product = useSelector(state => state.shopReducer.productSelected)
+  const productId = useSelector(state => state.shopReducer.productIdSelected)
 
-  // Para chequear si es o no landascape
-  // const [isPortrait, setIsPortrait] = useState(true)
-  // const { height, width } = useWindowDimensions()
-  // useEffect(() => {
-  //     height < width ? setIsPortrait(false) : setIsPortrait(true)
-  //   }, [height])
+  const {data: productById, isLoading, error } = useGetProductByIdQuery(productId)
+
+
 
   useEffect(()=>{
-    setProductSelected(product)
-    // setIsLoading(false)
-  }, [product])
+    if (!isLoading) {
+      const productValue = Object.values(productById)
+      setProductSelected(productValue[0])
+    }
+  }, [isLoading, productById])
 
+
+  
   const onAddToCart = () => {
     dispatch(addItem({...productSelected, quantity: 1}))
     console.log("Comprar")
@@ -37,12 +50,12 @@ const ProductDetailScreen = () => {
   return (
     <>
       {
-        !product
+        !productSelected
         ?
         <ActivityIndicator />
         :
         <>
-          <ScrollView >
+          <ScrollView>
             <Image
               style={styles.imageProduct}
               resizeMode='cover'
@@ -52,6 +65,7 @@ const ProductDetailScreen = () => {
               <Text style={styles.title}>{productSelected.title}</Text>
               <Text style={styles.description}>{productSelected.description}</Text>
               <Text style={styles.price}>$ {productSelected.price}</Text>
+              <Text style={styles.stock}>Stock: {productSelected.stock} unidades</Text>
               <TouchableOpacity style={styles.buyButton} onPress={onAddToCart}>
                 <Text style={styles.buyText}>Comprar</Text>
               </TouchableOpacity>
@@ -59,7 +73,6 @@ const ProductDetailScreen = () => {
           </ScrollView>
         </>
       }
-
     </>
   )
 }
@@ -73,23 +86,30 @@ const styles = StyleSheet.create({
   imageProduct: {
     minWidth: 300,
     width: '100%',
-    height: 400,
+    height: 350,
 
-  },
-  imageProductLandscape: {
-    width: 200,
-    height: 200,
   },
   detailContainer: {
     alignItems: 'center',
   },
   title: {
     fontFamily: 'Raleway-Bold',
-    fontSize: 32,
+    fontSize: 30,
+    color: COLORS.secondary,
+    textAlign: 'center'
+
   },
   description: {
-    fontFamily: 'Raleway-Regular',
+    fontFamily: 'Raleway-Italic',
     fontSize: 20,
+    paddingHorizontal: 10,
+    color: COLORS.primary
+
+  },
+  stock: {
+    fontFamily: 'Raleway-Italic',
+    color: COLORS.secondary
+
   },
   price: {
     fontFamily: 'Raleway-Bold',
@@ -101,18 +121,13 @@ const styles = StyleSheet.create({
     width: 200,
     padding: 10,
     alignItems: 'center',
-    backgroundColor: 'green',
+    backgroundColor: COLORS.confirm,
     borderRadius: 10,
   },
   buyText: {
-    color: '#000'
-  },
-  buyAlt: {
-    marginTop: 10,
-    width: 200,
-    padding: 10,
-    alignItems: 'center',
-    backgroundColor: COLORS.primary,
-    borderRadius: 10,
+    fontFamily: 'Raleway-Bold',
+    color: COLORS.primary,
+    fontSize: 18,
+    paddingVertical: 3
   }
 })

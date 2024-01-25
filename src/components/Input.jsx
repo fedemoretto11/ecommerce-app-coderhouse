@@ -29,25 +29,29 @@ export default Input
 const styles = StyleSheet.create({
     inputContainer: {
         justifyContent:'center',
-        width: '70%'
+        width: '80%',
+        padding: 6
     },
     input:{
         borderWidth:1,
         borderColor:COLORS.primary,
-        borderRadius: 10,
-        width: '90%',
+        borderRadius: 15,
+        width: '100%',
         backgroundColor: COLORS.secondary,
-        color: "#fff",
-        padding: 8
+        color: COLORS.white,
+        padding: 8,
+        fontSize: 16
     },
     label:{
         fontFamily:'Raleway-Bold',
-        color: "#fff",
+        color: COLORS.white,
         paddingLeft:5,
-        marginBottom:4,
+        marginBottom: 8,
+        fontSize: 16
     },
     error:{
         padding: 10,
-        color: "#FFF",
+        color: COLORS.error,
+        fontSize: 16
     }
 })

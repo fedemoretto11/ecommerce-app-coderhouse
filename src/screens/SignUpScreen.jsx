@@ -55,17 +55,20 @@ const SignupScreen = ({ navigation }) => {
         label="Email:" 
         onChange={setEmail} 
         error={emailError}
+        style={styles.input}
       />
       <Input 
         label="Contraseña:" 
         onChange={setPassword} 
         error={passwordError} 
-        isSecureEntry={true} />
+        isSecureEntry={true}
+        style={styles.input} />
       <Input
         label="Repetir contraseña:"
         onChange={setConfirmPassword}
         error={confirmPasswordError}
         isSecureEntry={true}
+        style={styles.input}
       />
       <TouchableOpacity style={styles.btn} onPress={onSubmit}>
         <Text style={styles.btnText}>Registrarme</Text>
@@ -92,10 +95,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-    gap: 10,
+    gap: 16,
+  },
+  input: {
+    padding: 14,
+    fontSize: 18,
   },
   btn: {
-    padding: 10,
+    padding: 14,
     backgroundColor: COLORS.secondary,
     borderRadius: 8,
     margin: 5,
@@ -103,6 +110,7 @@ const styles = StyleSheet.create({
   btnText: {
     color: "#fff",
     fontFamily: "Raleway-Bold",
+    fontSize: 18
   },
   altContainer: {
     flexDirection: "row",
@@ -114,12 +122,12 @@ const styles = StyleSheet.create({
   subtitle: {
     color: "#fff",
     fontFamily: "Raleway-Bold",
-    fontSize: 12,
+    fontSize: 16,
   },
   subtitleLink: {
     fontFamily: "Raleway-Light",
     color: "#fff",
-    fontSize: 11,
+    fontSize: 16,
     textDecorationLine: "underline",
   },
 });

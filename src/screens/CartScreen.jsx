@@ -9,11 +9,12 @@ const CartScreen = () => {
   
   const cartItems = useSelector(state => state.cartReducer.value.items)
   const total = useSelector(state => state.cartReducer.value.total)
+  const user = useSelector(state => state.authReducer.user)
 
   const [triggerPost, result ] = usePostOrderMutation()
 
   const confirmCart = () => {
-    triggerPost({total, cartItems, user: 'userLogged'})
+    triggerPost({total, cartItems, user: user})
   }
   
   

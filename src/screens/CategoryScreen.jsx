@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet } from 'react-native'
 
 import CategoryItem from '../components/CategoryItem'
+
 import { useGetCategoriesQuery } from '../services/shopService'
 
 const CategoryScreen = ({ navigation }) => {

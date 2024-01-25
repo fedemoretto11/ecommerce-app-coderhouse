@@ -1,9 +1,17 @@
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { 
+  ActivityIndicator, 
+  StatusBar, 
+  StyleSheet 
+} from 'react-native';
 import { useFonts } from 'expo-font'
-
 import { Provider } from 'react-redux';
-import store from './src/store';
+
+
 import MainNavigator from './src/navigator/MainNavigator';
+
+import { COLORS } from './src/global/colors';
+
+import store from './src/store';
 import { init } from './src/db';
 
 
@@ -28,6 +36,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <MainNavigator />
+      <StatusBar style='auto' backgroundColor={COLORS.secondary}/>
     </Provider>
   );
 }
