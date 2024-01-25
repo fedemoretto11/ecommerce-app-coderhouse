@@ -4,9 +4,8 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     value: {
-      user: 'userLogged',
       updatedAt: Date.now().toLocaleString(),
-      total: null,
+      total: 0,
       items: []
     }
   },
@@ -33,10 +32,9 @@ export const cartSlice = createSlice({
         }
       } else {
         state.value.items.push(action.payload)
-        const total = state.value.items.reduce((acc, current) => acc += current.price * current.quantity, 0)
+        const total = state.value.items.reduce((acc, currentItem) => acc += currentItem.price * currentItem.quantity, 0)
         state.total = total
-
-        state = {
+        state.value = {
           ...state.value,
           total,
           updatedAt: Date.now().toLocaleString(),
