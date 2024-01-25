@@ -27,11 +27,15 @@ const CartScreen = () => {
 
   const [triggerPost, result ] = usePostOrderMutation()
 
+
   const confirmCart = () => {
     triggerPost({total, cartItems, user: user})
     dispatch(cleanCart())
   }
   
+  const onCleanCart = () => {
+    dispatch(cleanCart())
+  }
   
 
   const renderCartItem = ({ item }) => <CartItem item={item} />;
@@ -45,6 +49,9 @@ const CartScreen = () => {
       />
       <View style={styles.cartConfirm}>
         <Text style={styles.totalPrice}>Total: USD {total}</Text>
+        <TouchableOpacity style={styles.cleanButton} onPress={onCleanCart}>
+          <Text style={styles.textConfirm}>Limpiar</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.confirmButton} onPress={confirmCart}>
           <Text style={styles.textConfirm}>Confirmar</Text>
         </TouchableOpacity>
@@ -75,6 +82,11 @@ const styles = StyleSheet.create({
     padding:10,
     borderRadius:10,
   },
+  cleanButton: {
+    backgroundColor: COLORS.third,
+    padding: 10,
+    borderRadius: 10
+  },  
   textConfirm:{
     fontFamily:'Raleway-Bold',
     fontSize:16,
