@@ -14,6 +14,8 @@ const LoginScreen = ({ navigation }) => {
 
     const [triggerLogin, result] = useLoginMutation();
 
+
+
     const dispatch = useDispatch()
 
 
@@ -25,9 +27,10 @@ const LoginScreen = ({ navigation }) => {
       }
     }
 
+
     useEffect(()=>{
-      if(result?.data){
-        console.log(result.data)
+      if(result.data){
+        console.log("Result Data: ", result.data)
         dispatch(setUser(result.data))
         insertSession({
           email: result.data.email,

@@ -15,8 +15,8 @@ export const shopApi = createApi({
       query: (id) => `products.json?orderBy="id"&equalTo=${id}`
     }),
     postOrder: builder.mutation({
-      query: ({...order}) => ({
-        url: 'orders.json',
+      query: ({ ...order }) => ({
+        url: `orders/${order.localId}.json`,
         method: 'POST',
         body: order
       })
@@ -34,7 +34,7 @@ export const shopApi = createApi({
       })
     }),
     getOrders: builder.query({
-      query: () => 'orders.json'
+      query: (localId) => `orders/${localId}.json`
     }),
 
   })

@@ -11,6 +11,7 @@ import Card from "./Card";
 
 import { COLORS } from "../global/colors";
 import { Feather } from "@expo/vector-icons";
+
 import { removeItem } from "../features/cartSlice";
 
 const CartItem = ({ item }) => {

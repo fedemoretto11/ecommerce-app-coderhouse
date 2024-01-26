@@ -23,16 +23,27 @@ const CartScreen = () => {
   
   const cartItems = useSelector(state => state.cartReducer.value.items)
   const total = useSelector(state => state.cartReducer.value.total)
-  const user = useSelector(state => state.authReducer.user)
+  const localId = useSelector(state => state.authReducer.localId)
+
 
   const [triggerPost, result ] = usePostOrderMutation()
 
 
   const confirmCart = () => {
-    triggerPost({total, cartItems, user: user})
-    dispatch(cleanCart())
+    const date = Date.now()
+    const order = { total, cartItems, localId: localId, createdAt: date, orderId: Math.ceil(Math.random(1,10)*1000) }
+    triggerPost(order)
+      .then((result) => {
+        console.log('Order Result:', result);
+        dispatch(cleanCart());
+      })
+      .catch((error) => {
+        console.error('Error posting order:', error);
+      });
   }
   
+
+
   const onCleanCart = () => {
     dispatch(cleanCart())
   }

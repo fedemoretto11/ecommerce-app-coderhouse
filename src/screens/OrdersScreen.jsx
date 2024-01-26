@@ -1,15 +1,32 @@
-import { FlatList, StyleSheet } from 'react-native'
-import orderData from '../data/orders-data.json'
+import { 
+  FlatList 
+} from 'react-native'
+
 import OrderItem from '../components/OrderItem'
 
+import { useGetOrdersQuery } from '../services/shopService'
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+
 const OrdersScreen = () => {
+
+  const localId = useSelector(state => state.authReducer.localId)
+
+  const { data, isLoading, error} = useGetOrdersQuery(localId)
+  const [ orderData, setOrderData ] = useState([])
+
+  console.log(localId)
   
+  useEffect(() => {
+    if (data) {
+      const orders = Object.values(data)
+      setOrderData(orders)
+    }
+  }, [data, isLoading])
+
   const renderOrderItem = ({ item }) => {
-    const total = item.items.reduce((acc, item) => (
-      acc += item.price * item.quantity
-    ), 0)
     return (
-      <OrderItem order={item} total={total} />
+      <OrderItem order={item} />
     )
   }
   
@@ -17,9 +34,7 @@ const OrdersScreen = () => {
     <FlatList
       data={orderData}
       renderItem={renderOrderItem}
-      key={item => item.id}
     />
   )
 }
 export default OrdersScreen
-const styles = StyleSheet.create({})
