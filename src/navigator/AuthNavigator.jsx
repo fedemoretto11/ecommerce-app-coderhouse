@@ -26,7 +26,6 @@ const AuthNavigator = () => {
         name='Login'
         component={LoginScreen}
       />
-
       
     </Stack.Navigator>
 
