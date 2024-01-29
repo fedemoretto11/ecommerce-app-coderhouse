@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "iPhone 9",
+    "description": "An apple mobile which is nothing like apple",
+    "price": 549,
+    "discountPercentage": 12.96,
+    "rating": 4.69,
+    "stock": 94,
+    "brand": "Apple",
+    "category": "smartphones",
+    "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+    "images": [
+        "https://i.dummyjson.com/data/products/1/1.jpg",
+        "https://i.dummyjson.com/data/products/1/2.jpg",
+        "https://i.dummyjson.com/data/products/1/3.jpg",
+        "https://i.dummyjson.com/data/products/1/4.jpg",
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+    ]
+  },
+  {
+    "brand": "Carry On",
+    "category": "pianos",
+    "description": "Mejorá tus habilidades, explorá nuevos sonidos y dejá fluir tu creatividad.",
+    "id": "MLA1297548552",
+    "price": 116399.7,
+    "stock": 12,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_868986-MLA46503561067_062021-O.webp",
+    "title": "Teclado Usb Plegable Carry On Fp 88 Teclas + Bolso Full" 
+  },
+  {
+    "brand": "Behringer",
+    "category": "accesorios",
+    "description": "Este pedal de efectos permite alterar el sonido de tu instrumento y, de esta manera, explorar nuevas posibilidades sonoras. ",
+    "id": "MLA1211214130",
+    "price": 39507.89,
+    "stock": 9,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_868986-MLA46503561067_062021-O.webp",
+    "title": "Pedal De Efecto Behringer Ultra Octaver Uo300  Gris" 
+  }
+  
+]
