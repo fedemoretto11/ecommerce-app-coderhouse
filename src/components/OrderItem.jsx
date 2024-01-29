@@ -1,14 +1,17 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import Card from "./Card";
 import { Feather } from "@expo/vector-icons";
+import { COLORS } from "../global/colors";
 
 const OrderItem = ({ order, setModalVisible, setOrderId }) => {
   return (
-    <Card style={styles.cartItemContainer}>
+    <View style={styles.cartItemContainer}>
       <View>
+        <Text style={styles.orderNumber}>
+          Orden: {order.orderId}
+        </Text>
         <Text style={styles.createdAt}>
-          Creada el {new Date(order.createdAt).toLocaleString()}
+          Creada el {new Date(order.createdAt).toLocaleString('es-AR')}
         </Text>
         <Text style={styles.total}>Total: ${order.total}</Text>
       </View>
@@ -21,7 +24,7 @@ const OrderItem = ({ order, setModalVisible, setOrderId }) => {
       >
         <Feather name="search" size={24} color="black" />
       </TouchableOpacity>
-    </Card>
+    </View>
   );
 };
 
@@ -31,17 +34,29 @@ const styles = StyleSheet.create({
   cartItemContainer: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: COLORS.primary,
+    marginTop: 15,
+    marginHorizontal: 10,
   },
   searchIcon: {
     marginLeft: "auto",
   },
-  createdAt: {
+  orderNumber: {
     fontFamily: "Raleway-Regular",
     marginBottom: 5,
+    fontSize: 16,
+  },
+  createdAt: {
+    fontFamily: "Raleway-Light",
+    marginBottom: 5,
+    fontSize: 14,
   },
   total: {
     fontFamily: "Raleway-Bold",
-    fontSize: 14,
+    fontSize: 16,
   },
 });

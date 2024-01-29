@@ -1,13 +1,21 @@
 import { 
+  useEffect, 
+  useState 
+} from 'react'
+import { 
   FlatList, Modal, StyleSheet, Text, TouchableOpacity, View 
 } from 'react-native'
 
-import OrderItem from '../components/OrderItem'
-
 import { useGetOrdersQuery } from '../services/shopService'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+
 import { COLORS } from '../global/colors'
+
+import OrderItem from '../components/OrderItem'
+import OrderItemDetail from '../components/OrderItemDetail'
+
+
+
 
 const OrdersScreen = () => {
 
@@ -38,20 +46,28 @@ const OrdersScreen = () => {
       <OrderItem order={item} setModalVisible={setModalVisible} setOrderId={setOrderId} />
     )
   }
+
+  const renderItem = ({ item }) => {
+    return (
+      <OrderItemDetail item={item}/>
+    )
+  }
   
   return (
     <>
       <FlatList
         data={orderData}
         renderItem={renderOrderItem}
+        keyExtractor={orderData?.orderId}
       />
-      <Modal visible={modalVisible} animationType='fade'>
+      <Modal visible={modalVisible} animationType='fade' style={{ width: '100%' }}>
         <View style={styles.modal}>
           <View style={styles.innerModal}>
             <FlatList 
               data={orderSelected?.cartItems}
+              renderItem={renderItem}
             />
-            <Text style={styles.modalText}>{orderSelected?.total}</Text>
+            <Text style={styles.modalText}>$ {orderSelected?.total}</Text>
             <TouchableOpacity
               style={styles.modalBtn}
               onPress={() => {setModalVisible(false)}}
@@ -69,16 +85,16 @@ export default OrdersScreen
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
-    marginTop: 30,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.secondary,
   },
   innerModal: {
+    width: '90%',
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: COLORS.white,
     borderRadius: 20,
-    padding: 35,
+    padding: 15,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -91,7 +107,9 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 20,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: "Raleway-Bold",
+    fontSize: 25,
   },
   modalBtn: {
     width: 100,
