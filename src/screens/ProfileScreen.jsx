@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux'
 
 import user_data from '../data/user-data.json'
 
+import { FontAwesome } from '@expo/vector-icons';
+
+import { COLORS } from '../global/colors.js'
+
 
 const ProfileScreen = ({ navigation }) => {
 
@@ -34,10 +38,17 @@ const ProfileScreen = ({ navigation }) => {
       </View>
       <View style={styles.userDataContainer}>
         <Text style={styles.userTitle}>{user_data.name}</Text>
-        <Text style={styles.userData}>{user_data.role}</Text>
+        <Text style={styles.userData}>Rol: {user_data.role}</Text>
         <Text style={styles.userData}>Nivel: {user_data.level}</Text>
         <Text style={styles.userData}>Direccion: {user_data.address}</Text>
-        <Text style={styles.userData}>{user_data.city}</Text>
+        <Text style={styles.userData}>Localidad: {user_data.city}</Text>
+      </View>
+      <View style={styles.pencil}>
+        <Pressable
+          onPress={() => navigation.navigate("Cargar Datos")}
+        >
+          <FontAwesome name="pencil-square-o" size={28} color={COLORS.primary} />
+        </Pressable>
       </View>
     </View>
   )
@@ -52,7 +63,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 20,
     gap: 20,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    justifyContent: "space-around"
   },
   profilePicture: {
     width: 100,
@@ -70,6 +82,9 @@ const styles = StyleSheet.create({
   },
   userData: {
     fontSize: 12
+  }, 
+  pencil: {
+    
   }
 
 })

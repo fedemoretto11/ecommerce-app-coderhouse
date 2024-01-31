@@ -30,6 +30,8 @@ const ProductDetailScreen = () => {
 
   const {data: productById, isLoading, error } = useGetProductByIdQuery(productId)
 
+  console.log(productSelected)
+
 
 
   useEffect(()=>{
