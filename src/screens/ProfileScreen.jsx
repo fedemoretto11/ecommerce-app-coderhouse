@@ -1,17 +1,31 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { useSelector } from 'react-redux'
 
-import user_data from '../data/user-data.json'
-
 import { FontAwesome } from '@expo/vector-icons';
 
 import { COLORS } from '../global/colors.js'
+import { useGetUserDataQuery } from '../services/userService.js';
+import { useEffect, useState } from 'react';
+
 
 
 const ProfileScreen = ({ navigation }) => {
 
   const image = useSelector(state => state.authReducer.profilePicture)
+  const localId = useSelector(state => state.authReducer.localId)
 
+  const [userData, setUserData] = useState({})
+
+  const {data, isLoading, error} = useGetUserDataQuery(localId)
+
+  useEffect(() => {
+    setUserData(data)
+    console.log(userData)
+
+  }, [data, isLoading])
+
+
+  
   return (
     <View style={styles.container}>
       <View>
@@ -37,11 +51,11 @@ const ProfileScreen = ({ navigation }) => {
         </Pressable>
       </View>
       <View style={styles.userDataContainer}>
-        <Text style={styles.userTitle}>{user_data.name}</Text>
-        <Text style={styles.userData}>Rol: {user_data.role}</Text>
-        <Text style={styles.userData}>Nivel: {user_data.level}</Text>
-        <Text style={styles.userData}>Direccion: {user_data.address}</Text>
-        <Text style={styles.userData}>Localidad: {user_data.city}</Text>
+        <Text style={styles.userTitle}>{userData?.nombre} {userData?.apellido}</Text>
+        <Text style={styles.userData}>Rol: Pelicano</Text>
+        <Text style={styles.userData}>Nivel: 12</Text>
+        <Text style={styles.userData}>Direccion: {userData?.direccion}</Text>
+        <Text style={styles.userData}>Localidad: {userData?.localidad}</Text>
       </View>
       <View style={styles.pencil}>
         <Pressable

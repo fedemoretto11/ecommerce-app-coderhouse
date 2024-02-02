@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { BASE_URL } from '../firebase/db'
 
-
 export const shopApi = createApi({
   reducerPath: 'shopApi',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
@@ -22,18 +21,6 @@ export const shopApi = createApi({
         body: order
       })
     }),
-    getProfilePicture: builder.query({
-      query: (localId) => `profilePictures/${localId}.json` 
-    }),
-    postProfilePicture: builder.mutation({
-      query: ({localId, image}) => ({
-        url: `profilePictures/${localId}.json`,
-        method: 'PUT',
-        body: {
-          image
-        }
-      })
-    }),
     getOrders: builder.query({
       query: (localId) => `orders/${localId}.json`
     }),
@@ -47,8 +34,6 @@ export const {
   useGetCategoriesQuery, 
   useGetProductsByCategoryQuery,
   usePostOrderMutation, 
-  useGetProfilePictureQuery,
-  usePostProfilePictureMutation,
   useGetOrdersQuery,
   useGetProductByIdQuery
 } = shopApi

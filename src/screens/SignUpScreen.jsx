@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import Input from "../components/Input";
 import { useEffect, useState } from "react";
 import { useSignUpMutation } from "../services/authService";
@@ -6,6 +6,15 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../features/authSlice";
 import { COLORS } from "../global/colors";
 import { signUpSchema } from "../validations/signUp";
+import { usePostUserDataMutation } from "../services/userService";
+
+
+
+// const RANDOM_NAMES = ["Gato", "Pelicano", "Chihuana", "Elefante", "Rinoceronte"]
+// const RANDOM_LASTNAMES = ["Peludo", "Amarillo", "Chico", "Grande", "Lanudo"]
+// const RANDOM_ADDRESS = ["Av Siempreviva 742", "Chacabuco 62", "Balcarce 50", "Cerrito 628", "Av Rivadavia 1864"]
+// const RANDOM_CITIES = ["Maipu", "Buenos Aires", "Cordoba", "Holbaek", "El Cairo"]
+
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -17,6 +26,16 @@ const SignupScreen = ({ navigation }) => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("")
 
   const [triggerSignup, result] = useSignUpMutation();
+  const [tiggerPostData, resultPostData] = usePostUserDataMutation()
+
+
+  // const randomData = {
+  //   nombre: RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)],
+  //   apellido: RANDOM_LASTNAMES[Math.floor(Math.random() * RANDOM_NAMES.length)],
+  //   direccion: RANDOM_ADDRESS[Math.floor(Math.random() * RANDOM_NAMES.length)],
+  //   localidad: RANDOM_CITIES[Math.floor(Math.random() * RANDOM_NAMES.length)]
+
+  // }
 
   const onSubmit = () => {
 
@@ -51,6 +70,14 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Image 
+          source={require('../../assets/img/SuperMusicChanguitoLogo.png')}
+          style={styles.img}
+          resizeMode='cover'
+        />
+        <Text style={styles.titleText}>Super Music Changuito</Text>
+      </View>
       <Input 
         label="Email:" 
         onChange={setEmail} 
@@ -95,7 +122,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-    gap: 16,
+    gap: 8,
+  },
+  titleContainer: {
+    marginBottom: 22,
+    gap: 16
+  },
+  titleText: {
+    color: COLORS.white,
+    fontFamily: "Raleway-Bold",
+    fontSize: 28,
+  },
+  img: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
+    alignSelf: 'center'
   },
   input: {
     padding: 14,

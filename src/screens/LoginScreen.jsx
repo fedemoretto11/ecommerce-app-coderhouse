@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import Input from '../components/Input'
 import { COLORS } from '../global/colors'
 import { useEffect, useState } from 'react'
@@ -44,6 +44,14 @@ const LoginScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.titleContainer}>
+              <Image 
+                source={require('../../assets/img/SuperMusicChanguitoLogo.png')}
+                style={styles.img}
+                resizeMode='cover'
+              />
+              <Text style={styles.titleText}>Super Music Changuito</Text>
+            </View>
             <Input
                 label="Email:"
                 onChange={setEmail}
@@ -59,7 +67,7 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.altContainer}>
                 <Text style={styles.subtitle}>¿No tienes una cuenta?</Text>
                 <TouchableOpacity onPress={() => { navigation.navigate("Signup") }}>
-                    <Text style={styles.subtitleLink}>Crear una</Text>
+                    <Text style={styles.subtitleLink}>Registrate</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -74,7 +82,22 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       flex: 1,
-      gap: 16,
+      gap: 18,
+    },
+    titleContainer: {
+      marginBottom: 42,
+      gap: 16
+    },
+    titleText: {
+      color: COLORS.white,
+      fontFamily: "Raleway-Bold",
+      fontSize: 28,
+    },
+    img: {
+      width: 100,
+      height: 100,
+      borderRadius: 20,
+      alignSelf: 'center'
     },
     btn: {
       padding: 14,

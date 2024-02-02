@@ -1,21 +1,22 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASE_URL } from "../firebase/db";
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseQuery: BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     getUserData: builder.query({
       query: (localId) => `users/${localId}.json`
     }),
+    getProfilePicture: builder.query({
+      query: (localId) => `profilePictures/${localId}.json` 
+    }),
     postUserData: builder.mutation({
-      query: (localId, ...data) => ({
+      query: ({localId, data}) => ({
         url: `users/${localId}.json`,
         method: 'PUT',
         body: data
       })
-    }),
-    getProfilePicture: builder.query({
-      query: (localId) => `profilePictures/${localId}.json` 
     }),
     postProfilePicture: builder.mutation({
       query: ({localId, image}) => ({
@@ -28,3 +29,11 @@ export const userApi = createApi({
     })
   })
 })
+
+
+export const {
+  useGetProfilePictureQuery,
+  usePostProfilePictureMutation,
+  usePostUserDataMutation,
+  useGetUserDataQuery
+} = userApi

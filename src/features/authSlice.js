@@ -6,7 +6,13 @@ export const authSlice = createSlice({
       user: null,
       token: null,
       profilePicture: null,
-      localId: null
+      localId: null,
+      userData: {
+        nombre: null,
+        apellido: null,
+        direccion: null,
+        localidad: null
+      }
     },
     reducers:{
       setUser: (state, action) => {
@@ -34,7 +40,7 @@ export const {
   setUser, 
   clearUser,
   setProfilePicture,
-  logout 
+  logout,
 } = authSlice.actions
 
 export default authSlice.reducer

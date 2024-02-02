@@ -7,8 +7,8 @@ import AuthNavigator from './AuthNavigator'
 
 import { fetchSession } from '../db'
 
-import { useGetProfilePictureQuery } from '../services/shopService'
 import { setProfilePicture, setUser } from '../features/authSlice'
+import { useGetProfilePictureQuery } from '../services/userService'
 
 
 const MainNavigator = () => {
@@ -18,6 +18,7 @@ const MainNavigator = () => {
   const localId = useSelector(state => state.authReducer.localId)
 
   const {data, error, isLoading} = useGetProfilePictureQuery(localId)
+
 
   useEffect(() => {
     if (data) {
