@@ -17,7 +17,7 @@ const DataScreen = ({ navigation }) => {
 
   const [triggerPostData, result] = usePostUserDataMutation()
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const newData = {
       nombre: nombre,
       apellido: apellido,
@@ -25,8 +25,8 @@ const DataScreen = ({ navigation }) => {
       localidad: localidad
     }
     try {
-      triggerPostData({ localId, data: newData})
-      navigation.goBack()
+      await triggerPostData({ localId, data: newData})
+      navigation.navigate("Perfil")
     } catch (error) {
       console.log("Error al modificar datos: ", error)
     }

@@ -17,46 +17,43 @@ const ProfileScreen = ({ navigation }) => {
   const [userData, setUserData] = useState({})
 
   const {data, isLoading, error} = useGetUserDataQuery(localId)
-
+  
   useEffect(() => {
     setUserData(data)
     console.log(userData)
-
   }, [data, isLoading])
+
+
+  const renderImage = () => (
+    <Pressable 
+      onPress={() => navigation.navigate('Seleccionar Imagen')}
+      style={styles.imageContainer}
+    >
+      {
+        image 
+        ? 
+        <Image  source={{ uri: image }} style={styles.profilePicture} resizeMode='contain'/>
+        : 
+        <Image  source={require('../../assets/img/usuario.png')} style={styles.profilePicture} resizeMode='contain'/>
+      }
+    </Pressable>
+  )
+
+  const renderUserData = () => (
+    <View style={styles.userDataContainer}>
+      <Text style={styles.userTitle}>{userData?.nombre} {userData?.apellido}</Text>
+      <Text style={styles.userData}>Nivel: 12</Text>
+      <Text style={styles.userData}>Direccion: {userData?.direccion}</Text>
+      <Text style={styles.userData}>Localidad: {userData?.localidad}</Text>
+    </View>
+  )
 
 
   
   return (
     <View style={styles.container}>
-      <View>
-        <Pressable 
-          onPress={() => navigation.navigate('Seleccionar Imagen')}
-          style={styles.imageContainer}
-        >
-          {
-            image 
-            ? 
-            <Image 
-              source={{ uri: image }}
-              style={styles.profilePicture}
-              resizeMode='contain'
-            />
-            : 
-            <Image 
-              source={require('../../assets/img/usuario.png')}
-              style={styles.profilePicture}
-              resizeMode='contain'
-            />
-          }
-        </Pressable>
-      </View>
-      <View style={styles.userDataContainer}>
-        <Text style={styles.userTitle}>{userData?.nombre} {userData?.apellido}</Text>
-        <Text style={styles.userData}>Rol: Pelicano</Text>
-        <Text style={styles.userData}>Nivel: 12</Text>
-        <Text style={styles.userData}>Direccion: {userData?.direccion}</Text>
-        <Text style={styles.userData}>Localidad: {userData?.localidad}</Text>
-      </View>
+      <View>{renderImage()}</View>
+      {renderUserData()}
       <View style={styles.pencil}>
         <Pressable
           onPress={() => navigation.navigate("Cargar Datos")}
