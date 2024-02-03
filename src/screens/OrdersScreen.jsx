@@ -22,6 +22,7 @@ const OrdersScreen = () => {
   const localId = useSelector(state => state.authReducer.localId)
 
   const { data, isLoading, error} = useGetOrdersQuery(localId)
+
   const [ orderData, setOrderData ] = useState([])
 
   const [modalVisible, setModalVisible] = useState(false)
@@ -52,6 +53,28 @@ const OrdersScreen = () => {
       <OrderItemDetail item={item}/>
     )
   }
+
+  const prueba = () => {
+    console.log("Data: ", data)
+    console.log("-----")
+    console.log("Order DATA: ", orderData)
+    console.log("-----")
+    console.log("Order DATA largo: ", orderData.length)
+  }
+
+
+
+
+
+  if (isLoading) {
+    return <Text>Cargando</Text>
+
+  }
+  if (error) {
+    return <Text>Error: {error.message}</Text>
+
+  }
+
   
   return (
     <>
@@ -60,6 +83,11 @@ const OrdersScreen = () => {
         renderItem={renderOrderItem}
         keyExtractor={orderData?.orderId}
       />
+      <TouchableOpacity
+        onPress={prueba}
+      >
+        <Text>Prueba</Text>
+      </TouchableOpacity>
       <Modal visible={modalVisible} animationType='fade' style={{ width: '100%' }}>
         <View style={styles.modal}>
           <View style={styles.innerModal}>

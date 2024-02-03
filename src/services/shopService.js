@@ -23,7 +23,7 @@ export const shopApi = createApi({
     }),
     getOrders: builder.query({
       query: (localId) => `orders/${localId}.json`
-    }),
+    })
 
   })
 
