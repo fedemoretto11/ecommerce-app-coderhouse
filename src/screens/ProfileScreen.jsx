@@ -1,28 +1,35 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import { useSelector } from 'react-redux'
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { FontAwesome } from '@expo/vector-icons';
 
 import { COLORS } from '../global/colors.js'
 import { useGetUserDataQuery } from '../services/userService.js';
 import { useEffect, useState } from 'react';
+import { setUserData } from '../features/authSlice.js';
 
 
 
 const ProfileScreen = ({ navigation }) => {
 
+  const dispatch = useDispatch()
+
+  
   const image = useSelector(state => state.authReducer.profilePicture)
   const localId = useSelector(state => state.authReducer.localId)
-
-  const [userData, setUserData] = useState({})
-
-  const {data, isLoading, error} = useGetUserDataQuery(localId)
+  const userData = useSelector(state => state.authReducer.userData)
   
-  useEffect(() => {
-    setUserData(data)
-    console.log(userData)
-  }, [data, isLoading])
+  const {data, isLoading, error} = useGetUserDataQuery(localId)
 
+  const [datosUsuario, setDatosUsuario] = useState(data)
+
+  useEffect(() => {
+    if (userData) {
+      setDatosUsuario(userData)
+    }
+  }, [userData])
+
+  
 
   const renderImage = () => (
     <Pressable 
@@ -41,14 +48,12 @@ const ProfileScreen = ({ navigation }) => {
 
   const renderUserData = () => (
     <View style={styles.userDataContainer}>
-      <Text style={styles.userTitle}>{userData?.nombre} {userData?.apellido}</Text>
+      <Text style={styles.userTitle}>{datosUsuario?.nombre || data?.nombre} {datosUsuario?.apellido || data?.apellido}</Text>
       <Text style={styles.userData}>Nivel: 12</Text>
-      <Text style={styles.userData}>Direccion: {userData?.direccion}</Text>
-      <Text style={styles.userData}>Localidad: {userData?.localidad}</Text>
+      <Text style={styles.userData}>Direccion: {datosUsuario?.direccion || data?.direccion}</Text>
+      <Text style={styles.userData}>Localidad: {datosUsuario?.localidad || data?.localidad}</Text>
     </View>
   )
-
-
   
   return (
     <View style={styles.container}>

@@ -3,11 +3,13 @@ import Input from '../components/Input'
 import { COLORS } from '../global/colors'
 import { useState } from 'react'
 import { useGetUserDataQuery, usePostUserDataMutation } from '../services/userService'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserData } from '../features/authSlice'
 
 
 const DataScreen = ({ navigation }) => {
 
+  const dispatch = useDispatch()
   const localId = useSelector(state => state.authReducer.localId)
 
   const [nombre, setNombre] = useState("")
@@ -17,7 +19,7 @@ const DataScreen = ({ navigation }) => {
 
   const [triggerPostData, result] = usePostUserDataMutation()
 
-  const onSubmit = async () => {
+  const onSubmit =  () => {
     const newData = {
       nombre: nombre,
       apellido: apellido,
@@ -25,7 +27,11 @@ const DataScreen = ({ navigation }) => {
       localidad: localidad
     }
     try {
-      await triggerPostData({ localId, data: newData})
+      dispatch(setUserData(newData))
+      triggerPostData({ localId, data: newData})
+        .then((result) => {
+          console.log("Datos: ", result)
+        })
       navigation.navigate("Perfil")
     } catch (error) {
       console.log("Error al modificar datos: ", error)
