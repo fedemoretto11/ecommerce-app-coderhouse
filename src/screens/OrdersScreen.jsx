@@ -20,6 +20,7 @@ import OrderItemDetail from '../components/OrderItemDetail'
 const OrdersScreen = () => {
 
   const localId = useSelector(state => state.authReducer.localId)
+  const localOrders = useSelector(state => state.orderReducer.orders)
 
   const { data, isLoading, error} = useGetOrdersQuery(localId)
 
@@ -33,9 +34,15 @@ const OrdersScreen = () => {
   useEffect(() => {
     if (data) {
       const orders = Object.values(data)
-      setOrderData(orders)
+      setOrderData([...orderData, ...orders])
     }
-  }, [data, isLoading])
+  }, [data])
+
+  useEffect(() => {
+    if (localOrders) {
+      setOrderData([...orderData, ...localOrders])
+    }
+  }, [localOrders])
 
   useEffect(() => {
     const orderSelected = orderData.find(order => order.orderId === orderId)
@@ -66,14 +73,14 @@ const OrdersScreen = () => {
 
 
 
-  if (isLoading) {
-    return <Text>Cargando</Text>
+  // if (isLoading) {
+  //   return <Text>Cargando</Text>
 
-  }
-  if (error) {
-    return <Text>Error: {error.message}</Text>
+  // }
+  // if (error) {
+  //   return <Text>Error: {error.message}</Text>
 
-  }
+  // }
 
   
   return (

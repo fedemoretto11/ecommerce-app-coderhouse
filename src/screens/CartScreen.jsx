@@ -13,6 +13,7 @@ import {
 import { usePostOrderMutation } from "../services/shopService";
 
 import { cleanCart } from "../features/cartSlice";
+import { addOrder } from "../features/orderSlice";
 
 import CartItem from "../components/Cartitem";
 import { COLORS } from "../global/colors";
@@ -32,6 +33,7 @@ const CartScreen = () => {
   const confirmCart = () => {
     const date = Date.now()
     const order = { total, cartItems, localId: localId, createdAt: date, orderId: Math.ceil(Math.random(1,10)*1000) }
+    dispatch(addOrder(order))
     triggerPost(order)
       .then((result) => {
         console.log('Order Result:', result);

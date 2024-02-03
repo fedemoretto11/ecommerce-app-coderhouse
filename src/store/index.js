@@ -8,6 +8,7 @@ import { userApi } from "../services/userService";
 import shopReducer from "../features/shopSlice";
 import cartReducer from '../features/cartSlice';
 import authReducer from "../features/authSlice";
+import orderReducer from "../features/orderSlice";
 
 
 
@@ -16,6 +17,7 @@ const store = configureStore({
     shopReducer,
     cartReducer,
     authReducer,
+    orderReducer,
     [shopApi.reducerPath]: shopApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer
