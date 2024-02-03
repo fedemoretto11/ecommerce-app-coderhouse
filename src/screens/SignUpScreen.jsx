@@ -3,20 +3,24 @@ import Input from "../components/Input";
 import { useEffect, useState } from "react";
 import { useSignUpMutation } from "../services/authService";
 import { useDispatch } from "react-redux";
-import { setUser } from "../features/authSlice";
+import { setUser, setUserData } from "../features/authSlice";
 import { COLORS } from "../global/colors";
 import { signUpSchema } from "../validations/signUp";
 import { usePostUserDataMutation } from "../services/userService";
 
 
 
-// const RANDOM_NAMES = ["Gato", "Pelicano", "Chihuana", "Elefante", "Rinoceronte"]
-// const RANDOM_LASTNAMES = ["Peludo", "Amarillo", "Chico", "Grande", "Lanudo"]
-// const RANDOM_ADDRESS = ["Av Siempreviva 742", "Chacabuco 62", "Balcarce 50", "Cerrito 628", "Av Rivadavia 1864"]
-// const RANDOM_CITIES = ["Maipu", "Buenos Aires", "Cordoba", "Holbaek", "El Cairo"]
+const RANDOM_NAMES = ["Gato", "Pelicano", "Chihuana", "Elefante", "Rinoceronte"]
+const RANDOM_LASTNAMES = ["Peludo", "Amarillo", "Chico", "Grande", "Lanudo"]
+const RANDOM_ADDRESS = ["Av Siempreviva 742", "Chacabuco 62", "Balcarce 50", "Cerrito 628", "Av Rivadavia 1864"]
+const RANDOM_CITIES = ["Maipu", "Buenos Aires", "Cordoba", "Holbaek", "El Cairo"]
 
 
 const SignupScreen = ({ navigation }) => {
+
+  const dispatch = useDispatch();
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,22 +30,28 @@ const SignupScreen = ({ navigation }) => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("")
 
   const [triggerSignup, result] = useSignUpMutation();
-  const [tiggerPostData, resultPostData] = usePostUserDataMutation()
+  const [triggerPostData, resultPostData] = usePostUserDataMutation()
 
 
-  // const randomData = {
-  //   nombre: RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)],
-  //   apellido: RANDOM_LASTNAMES[Math.floor(Math.random() * RANDOM_NAMES.length)],
-  //   direccion: RANDOM_ADDRESS[Math.floor(Math.random() * RANDOM_NAMES.length)],
-  //   localidad: RANDOM_CITIES[Math.floor(Math.random() * RANDOM_NAMES.length)]
+  const randomData = {
+    nombre: RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)],
+    apellido: RANDOM_LASTNAMES[Math.floor(Math.random() * RANDOM_NAMES.length)],
+    direccion: RANDOM_ADDRESS[Math.floor(Math.random() * RANDOM_NAMES.length)],
+    localidad: RANDOM_CITIES[Math.floor(Math.random() * RANDOM_NAMES.length)]
 
-  // }
+  }
+
 
   const onSubmit = () => {
 
     try {
       const validations = signUpSchema.validateSync({email, password, confirmPassword})
       triggerSignup({ email, password });
+      dispatch(setUserData(randomData))
+      triggerPostData({ localId, data: randomData})
+        .then((result) => {
+          console.log("Datos: ", result)
+        })
     } catch (error) {
       console.log("Error al registrar");
       switch(error.path) {
@@ -60,7 +70,6 @@ const SignupScreen = ({ navigation }) => {
     }
   };
 
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (result.data) {
