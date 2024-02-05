@@ -90,7 +90,7 @@ const OrdersScreen = () => {
               data={orderSelected?.cartItems}
               renderItem={renderItem}
             />
-            <Text style={styles.modalText}>$ {orderSelected?.total}</Text>
+            <Text style={styles.modalText}>$ {orderSelected?.total.toLocaleString('es-AR')}</Text>
             <TouchableOpacity
               style={styles.modalBtn}
               onPress={() => {setModalVisible(false)}}

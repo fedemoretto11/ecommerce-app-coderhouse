@@ -4,6 +4,8 @@ import { Feather } from "@expo/vector-icons";
 import { COLORS } from "../const/colors";
 
 const OrderItem = ({ order, setModalVisible, setOrderId }) => {
+
+
   return (
     <View style={styles.cartItemContainer}>
       <View>
@@ -13,7 +15,7 @@ const OrderItem = ({ order, setModalVisible, setOrderId }) => {
         <Text style={styles.createdAt}>
           Creada el {new Date(order.createdAt).toLocaleString('es-AR')}
         </Text>
-        <Text style={styles.total}>Total: ${order.total}</Text>
+        <Text style={styles.total}>Total: ${order.total.toLocaleString('es-AR')}</Text>
       </View>
       <TouchableOpacity 
         style={styles.searchIcon} 

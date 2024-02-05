@@ -14,7 +14,7 @@ const OrderItemDetail = ({ item }) => {
 
   const dispatch = useDispatch()
 
-  
+  const total = item.price * item.quantity
 
   return (
     <View style={styles.orderItemContainer}>
@@ -27,7 +27,7 @@ const OrderItemDetail = ({ item }) => {
         <Text style={styles.orderTitle}>{item.title}</Text>
         <Text style={styles.orderLightText}>{item.brand}</Text>
         <Text style={styles.orderTotalPrice}>
-          Cantidad: {item.quantity}, Total: ${item.price * item.quantity}
+          Cant: {item.quantity}, Total: ${total.toLocaleString('es-AR')}
         </Text>
       </View>
     </View>
@@ -44,10 +44,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: COLORS.primary,
     borderRadius: 10,
+    marginHorizontal: 5,
     marginBottom: 15,
   },
   imageOrderItem: {
-    height: 50,
+    height: 100,
     width: 50,
     marginRight: 10,
   },
