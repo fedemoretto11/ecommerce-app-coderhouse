@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Input from '../components/Input'
-import { COLORS } from '../global/colors'
+import { COLORS } from '../const/colors'
 import { useState } from 'react'
 import { useGetUserDataQuery, usePostUserDataMutation } from '../services/userService'
 import { useDispatch, useSelector } from 'react-redux'

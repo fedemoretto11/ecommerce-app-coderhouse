@@ -16,7 +16,7 @@ import { cleanCart } from "../features/cartSlice";
 import { addOrder } from "../features/orderSlice";
 
 import CartItem from "../components/Cartitem";
-import { COLORS } from "../global/colors";
+import { COLORS } from "../const/colors";
 
 const CartScreen = () => {
 

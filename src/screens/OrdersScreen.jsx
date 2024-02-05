@@ -9,7 +9,7 @@ import {
 import { useGetOrdersQuery } from '../services/shopService'
 import { useSelector } from 'react-redux'
 
-import { COLORS } from '../global/colors'
+import { COLORS } from '../const/colors'
 
 import OrderItem from '../components/OrderItem'
 import OrderItemDetail from '../components/OrderItemDetail'

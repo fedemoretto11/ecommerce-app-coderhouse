@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 
 import Card from "./Card";
 
-import { COLORS } from "../global/colors";
+import { COLORS } from "../const/colors";
 
 const OrderItemDetail = ({ item }) => {
 

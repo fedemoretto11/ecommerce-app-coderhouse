@@ -4,16 +4,12 @@ import { useEffect, useState } from "react";
 import { useSignUpMutation } from "../services/authService";
 import { useDispatch } from "react-redux";
 import { setUser, setUserData } from "../features/authSlice";
-import { COLORS } from "../global/colors";
+import { COLORS } from "../const/colors";
 import { signUpSchema } from "../validations/signUp";
 import { usePostUserDataMutation } from "../services/userService";
+import { RANDOM_ADDRESS, RANDOM_CITIES, RANDOM_LASTNAMES, RANDOM_NAMES } from "../const/randomData";
 
 
-
-const RANDOM_NAMES = ["Gato", "Pelicano", "Chihuana", "Elefante", "Rinoceronte"]
-const RANDOM_LASTNAMES = ["Peludo", "Amarillo", "Chico", "Grande", "Lanudo"]
-const RANDOM_ADDRESS = ["Av Siempreviva 742", "Chacabuco 62", "Balcarce 50", "Cerrito 628", "Av Rivadavia 1864"]
-const RANDOM_CITIES = ["Maipu", "Buenos Aires", "Cordoba", "Holbaek", "El Cairo"]
 
 
 const SignupScreen = ({ navigation }) => {

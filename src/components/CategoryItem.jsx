@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import Card from "./Card";
 
 import { setCategorySelected } from "../features/shopSlice";
-import { COLORS } from "../global/colors";
+import { COLORS } from "../const/colors";
 
 const CategoryItem = ({ category, navigation }) => {
   const dispatch = useDispatch();

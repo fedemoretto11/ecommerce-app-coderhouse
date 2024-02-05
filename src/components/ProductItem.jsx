@@ -7,7 +7,7 @@ import {
 import { useDispatch } from "react-redux";
 
 import { setProductIdSelected } from "../features/shopSlice";
-import { COLORS } from "../global/colors";
+import { COLORS } from "../const/colors";
 
 
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { StyleSheet, Text, View, TextInput } from 'react-native'
-import { COLORS } from '../global/colors'
+import { COLORS } from '../const/colors'
 
 const Input = ({ label, isSecureEntry = false, error = "", onChange }) => {
     const [input, setInput] = useState()

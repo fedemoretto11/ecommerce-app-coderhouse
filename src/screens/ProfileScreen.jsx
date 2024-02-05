@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { FontAwesome } from '@expo/vector-icons';
 
-import { COLORS } from '../global/colors.js'
+import { COLORS } from '../const/colors.js'
 import { useGetUserDataQuery } from '../services/userService.js';
 import { useEffect, useState } from 'react';
 import { setUserData } from '../features/authSlice.js';

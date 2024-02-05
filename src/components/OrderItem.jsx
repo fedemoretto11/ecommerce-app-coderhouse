@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
-import { COLORS } from "../global/colors";
+import { COLORS } from "../const/colors";
 
 const OrderItem = ({ order, setModalVisible, setOrderId }) => {
   return (
