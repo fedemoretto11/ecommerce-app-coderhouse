@@ -16,7 +16,9 @@ const CategoryScreen = ({ navigation }) => {
     <FlatList 
       data={data}
       renderItem={renderCategoryItem}
-      keyExtractor={item=>item}
+      keyExtractor={item=>item.name}
+      horizontal={false}
+      numColumns={2}
     />
   )
 }

@@ -32,10 +32,6 @@ const ProductDetailScreen = () => {
 
   const {data: productById, isLoading, error } = useGetProductByIdQuery(productId)
 
-  console.log(productSelected)
-
-
-
   useEffect(()=>{
     if (!isLoading) {
       const productValue = Object.values(productById)
@@ -48,7 +44,6 @@ const ProductDetailScreen = () => {
   const onAddToCart = () => {
     dispatch(addItem({...productSelected, quantity: 1}))
     setModalVisible(true)
-    console.log("Comprar")
   }
 
 
