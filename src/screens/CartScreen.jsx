@@ -18,7 +18,7 @@ import { addOrder } from "../features/orderSlice";
 import CartItem from "../components/Cartitem";
 import { COLORS } from "../const/colors";
 
-const CartScreen = () => {
+const CartScreen = ({ navigation }) => {
 
   const dispatch = useDispatch()
   
@@ -54,22 +54,43 @@ const CartScreen = () => {
   const renderCartItem = ({ item }) => <CartItem item={item} />;
 
   return (
-    <View style={styles.cartContainer}>
-      <FlatList
-        data={cartItems}
-        renderItem={renderCartItem}
-        keyExtractor={(item) => item.id}
-      />
-      <View style={styles.cartConfirm}>
-        <Text style={styles.totalPrice}>Total: USD {total}</Text>
-        <TouchableOpacity style={styles.cleanButton} onPress={onCleanCart}>
-          <Text style={styles.textConfirm}>Limpiar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.confirmButton} onPress={confirmCart}>
-          <Text style={styles.textConfirm}>Confirmar</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <>
+      {
+        cartItems.length > 0
+        ?
+        <View style={styles.cartContainer}>
+          <FlatList
+            data={cartItems}
+            renderItem={renderCartItem}
+            keyExtractor={(item) => item.id}
+          />
+          <View style={styles.cartConfirm}>
+            <Text style={styles.totalPrice}>Total: USD {total}</Text>
+            <TouchableOpacity style={styles.cleanButton} onPress={onCleanCart}>
+              <Text style={styles.textConfirm}>Limpiar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.confirmButton} onPress={confirmCart}>
+              <Text style={styles.textConfirm}>Confirmar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        :
+        <View style={styles.emptyCartContainer}>
+          <Text style={styles.emptyCartText}>Carrito Vacio</Text>
+          <View style={styles.cartConfirm}>
+            <TouchableOpacity 
+            style={styles.confirmButton} 
+            onPress={() =>{navigation.navigate('Categorias')}}
+            >
+              <Text style={styles.textConfirm}>Volver</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      }
+      
+    
+    </>
+    
   );
 };
 
@@ -104,5 +125,17 @@ const styles = StyleSheet.create({
     fontFamily:'Raleway-Bold',
     fontSize:16,
     color: '#fff'
+  },
+  emptyCartContainer: {
+    flex: 1,
+    marginTop: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 60,
+  },
+  emptyCartText: {
+    fontFamily: 'Raleway-Bold',
+    color: COLORS.primary,
+    fontSize: 36
   }  
 })

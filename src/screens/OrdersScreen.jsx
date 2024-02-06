@@ -17,7 +17,7 @@ import OrderItemDetail from '../components/OrderItemDetail'
 
 
 
-const OrdersScreen = () => {
+const OrdersScreen = ({ navigation }) => {
 
   const localId = useSelector(state => state.authReducer.localId)
   const localOrders = useSelector(state => state.orderReducer.orders)
@@ -78,28 +78,46 @@ const OrdersScreen = () => {
   
   return (
     <>
-      <FlatList
-        data={orderData}
-        renderItem={renderOrderItem}
-        keyExtractor={orderData?.orderId}
-      />
-      <Modal visible={modalVisible} animationType='fade' style={{ width: '100%' }}>
-        <View style={styles.modal}>
-          <View style={styles.innerModal}>
-            <FlatList 
-              data={orderSelected?.cartItems}
-              renderItem={renderItem}
-            />
-            <Text style={styles.modalText}>$ {orderSelected?.total.toLocaleString('es-AR')}</Text>
-            <TouchableOpacity
-              style={styles.modalBtn}
-              onPress={() => {setModalVisible(false)}}
+      {
+        orderData.length > 0
+        ?
+        <>
+          <FlatList
+          data={orderData}
+          renderItem={renderOrderItem}
+          keyExtractor={orderData?.orderId}
+          />
+          <Modal visible={modalVisible} animationType='fade' style={{ width: '100%' }}>
+            <View style={styles.modal}>
+              <View style={styles.innerModal}>
+                <FlatList 
+                  data={orderSelected?.cartItems}
+                  renderItem={renderItem}
+                />
+                <Text style={styles.modalText}>$ {orderSelected?.total.toLocaleString('es-AR')}</Text>
+                <TouchableOpacity
+                  style={styles.modalBtn}
+                  onPress={() => {setModalVisible(false)}}
+                >
+                  <Text style={styles.btnText}>Volver</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+        </>
+        :
+        <View style={styles.emptyOrderContainer}>
+          <Text style={styles.emptyOrderText}>No hay ordenes</Text>
+          <View style={styles.cartConfirm}>
+            <TouchableOpacity 
+            style={styles.confirmButton} 
+            onPress={() =>{navigation.navigate('Categorias')}}
             >
-              <Text style={styles.btnText}>Volver</Text>
+              <Text style={styles.textConfirm}>Volver</Text>
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      }
     </>
   )
 }
@@ -146,5 +164,27 @@ const styles = StyleSheet.create({
     fontFamily: "Raleway-Bold",
     fontSize: 20,
     color: COLORS.secondary
+  },
+  emptyOrderContainer: {
+    flex: 1,
+    marginTop: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 60,
+  },
+  emptyOrderText: {
+    fontFamily: 'Raleway-Bold',
+    color: COLORS.primary,
+    fontSize: 36
+  },
+  confirmButton:{
+    backgroundColor: COLORS.secondary,
+    padding:10,
+    borderRadius:10,
+  },
+  textConfirm:{
+    fontFamily:'Raleway-Bold',
+    fontSize:16,
+    color: '#fff'
   }
 })

@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet } from 'react-native'
+import { FlatList } from 'react-native'
 
 import CategoryItem from '../components/CategoryItem'
 
@@ -24,6 +24,3 @@ const CategoryScreen = ({ navigation }) => {
 }
 
 export default CategoryScreen
-const styles = StyleSheet.create({
-
-})
