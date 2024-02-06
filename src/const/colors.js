@@ -3,7 +3,8 @@ export const COLORS = {
   secondary: '#263D7F',
   third: '#A1B3E6',
   gray: '#495685',
-  white: '#E5ECFF',
+  white: '#FFFFFF',
+  whiteBlue: '#E5ECFF',
   confirm: '#14A86C',
   error: '#C82530'
 }

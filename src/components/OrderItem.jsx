@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   orderNumber: {
     fontFamily: "Raleway-Regular",
     marginBottom: 5,
-    fontSize: 16,
+    fontSize: 14,
   },
   createdAt: {
     fontFamily: "Raleway-Light",

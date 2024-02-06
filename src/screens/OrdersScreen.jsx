@@ -91,7 +91,7 @@ const OrdersScreen = ({ navigation }) => {
           renderItem={renderOrderItem}
           keyExtractor={orderData?.orderId}
           />
-          <Modal visible={modalVisible} animationType='fade' style={{ width: '100%' }}>
+          <Modal visible={modalVisible} animationType='fade' transparent={true}>
             <View style={styles.modal}>
               <View style={styles.innerModal}>
                 <FlatList 
@@ -131,29 +131,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   modal: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLORS.secondary,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
   },
   innerModal: {
     width: '90%',
     margin: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: COLORS.white,
     borderRadius: 20,
     padding: 15,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
   modalText: {
     marginBottom: 20,

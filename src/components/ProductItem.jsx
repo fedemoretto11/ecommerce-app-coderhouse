@@ -27,7 +27,7 @@ const ProductItem = ({ product, navigation }) => {
       <Text style={styles.productTitle}>{product.title}</Text>
       <Image
         style={styles.productImage}
-        resizeMode="cover"
+        resizeMode="contain"
         source={{ uri: product.thumbnail }}
       />
     </TouchableOpacity>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
     borderRadius: 10,
-    backgroundColor: COLORS.third
+    backgroundColor: COLORS.white
   },
   productTitle: {
     fontFamily: 'Raleway-Italic',

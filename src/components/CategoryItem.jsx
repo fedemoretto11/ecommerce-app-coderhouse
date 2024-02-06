@@ -34,10 +34,10 @@ export default CategoryItem;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    backgroundColor: COLORS.third,
+    backgroundColor: COLORS.white,
     padding: 20,
     marginHorizontal: 10,
-    marginTop: 20,
+    marginVertical: 10,
     width: 155,
     gap: 15,
     justifyContent: 'center',

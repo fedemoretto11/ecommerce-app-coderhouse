@@ -122,14 +122,14 @@ export default ProductDetailScreen
 
 const styles = StyleSheet.create({
   itemContainer: {
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.whiteBlue,
   },
   imageContainer: {
     margin: 10,
     padding: 10,
     width: '95%',
     height: 300,
-    backgroundColor: COLORS.gray,
+    backgroundColor: COLORS.white,
     borderRadius: 20
   },
   imageProduct: {

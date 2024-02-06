@@ -4,7 +4,6 @@ import {
   StyleSheet, 
   Image
 } from "react-native";
-import { useDispatch } from "react-redux";
 
 import Card from "./Card";
 
@@ -12,7 +11,6 @@ import { COLORS } from "../const/colors";
 
 const OrderItemDetail = ({ item }) => {
 
-  const dispatch = useDispatch()
 
   const total = item.price * item.quantity
 
@@ -20,7 +18,7 @@ const OrderItemDetail = ({ item }) => {
     <View style={styles.orderItemContainer}>
       <Image
         style={styles.imageOrderItem}
-        resizeMode="cover"
+        resizeMode="contain"
         source={{ uri: item.thumbnail }}
       />
       <View>
@@ -38,13 +36,13 @@ export default OrderItemDetail;
 
 const styles = StyleSheet.create({
   orderItemContainer: {
+    width: 290,
     flexDirection: "row",
     alignItems: "center",
-    padding: 5,
-    borderWidth: 2,
+    padding: 2,
+    borderWidth: 1,
     borderColor: COLORS.primary,
     borderRadius: 10,
-    marginHorizontal: 5,
     marginBottom: 15,
   },
   imageOrderItem: {
@@ -55,17 +53,20 @@ const styles = StyleSheet.create({
   orderTitle: {
     fontFamily: "Raleway-Bold",
     textTransform: "capitalize",
-    fontSize: 18,
+    fontSize: 16,
+    width: '90%'
   },
   orderLightText: {
     fontFamily: "Raleway-Regular",
     textTransform: "capitalize",
-    fontSize: 15,
+    fontSize: 12,
   },
   orderTotalPrice: {
     fontFamily: "Raleway-Bold",
     textTransform: "capitalize",
-    fontSize: 16,
+    fontSize: 14,
     color: COLORS.primary,
+    width: '100%'
+
   },
 });
