@@ -34,6 +34,7 @@ export default OrderItem;
 
 const styles = StyleSheet.create({
   cartItemContainer: {
+    width: '95%',
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 10,

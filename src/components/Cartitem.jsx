@@ -30,9 +30,9 @@ const CartItem = ({ item }) => {
       <View>
         <Text style={styles.cartTitle}>{item.title}</Text>
         <Text style={styles.cartLightText}>{item.brand}</Text>
-        <Text style={styles.cartLightText}>${item.price} c/u</Text>
+        <Text style={styles.cartLightText}>${item.price.toLocaleString('es-AR')} c/u</Text>
         <Text style={styles.cartTotalPrice}>
-          Cantidad: {item.quantity}, Total: ${item.price * item.quantity}
+          Cantidad: {item.quantity}, Total: ${(item.price * item.quantity).toLocaleString('es-AR')}
         </Text>
       </View>
       <TouchableOpacity 
@@ -51,15 +51,18 @@ export default CartItem;
 
 const styles = StyleSheet.create({
   cartItemContainer: {
+    margin: 5,
+    borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
     padding: 20,
   },
   cartContenContainer: {
     flexDirection: "row",
+    
   },
   imageCartItem: {
-    height: 50,
+    height: 100,
     width: 50,
     marginRight: 10,
   },
@@ -70,6 +73,7 @@ const styles = StyleSheet.create({
     fontFamily: "Raleway-Bold",
     textTransform: "capitalize",
     fontSize: 20,
+    width: 250
   },
   cartLightText: {
     fontFamily: "Raleway-Regular",

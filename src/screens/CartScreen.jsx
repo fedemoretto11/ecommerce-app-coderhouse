@@ -65,7 +65,7 @@ const CartScreen = ({ navigation }) => {
             keyExtractor={(item) => item.id}
           />
           <View style={styles.cartConfirm}>
-            <Text style={styles.totalPrice}>Total: USD {total}</Text>
+            <Text style={styles.totalPrice}>Total: USD {total.toLocaleString('es-AR')}</Text>
             <TouchableOpacity style={styles.cleanButton} onPress={onCleanCart}>
               <Text style={styles.textConfirm}>Limpiar</Text>
             </TouchableOpacity>
@@ -108,17 +108,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
   },
   totalPrice: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Raleway-Bold'
   },
   confirmButton:{
     backgroundColor: COLORS.secondary,
-    padding:10,
+    padding: 8,
     borderRadius:10,
   },
   cleanButton: {
     backgroundColor: COLORS.third,
-    padding: 10,
+    padding: 8,
     borderRadius: 10
   },  
   textConfirm:{
@@ -136,6 +136,6 @@ const styles = StyleSheet.create({
   emptyCartText: {
     fontFamily: 'Raleway-Bold',
     color: COLORS.primary,
-    fontSize: 36
+    fontSize: 24
   }  
 })

@@ -3,6 +3,7 @@ import {
   useState 
 } from 'react'
 import { 
+  ActivityIndicator,
   FlatList, Modal, StyleSheet, Text, TouchableOpacity, View 
 } from 'react-native'
 
@@ -67,8 +68,11 @@ const OrdersScreen = ({ navigation }) => {
 
 
   if (isLoading) {
-    return <Text>Cargando</Text>
-
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size='large' color={COLORS.primary} />
+      </View>
+    )
   }
   if (error) {
     return <Text>Error: {error.message}</Text>
@@ -124,6 +128,11 @@ const OrdersScreen = ({ navigation }) => {
 export default OrdersScreen
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   modal: {
     flex: 1,
     justifyContent: "center",
