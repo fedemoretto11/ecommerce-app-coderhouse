@@ -51,33 +51,20 @@ _Que cosas necesitas para instalar el software y como instalarlas_
 ### Dependencias
 
 ```
-**[@react-navigation/bottom-tabs](https://www.npmjs.com/package/@react-navigation/bottom-tabs):** v6.5.11 - Navegación por pestañas.
+@react-navigation/bottom-tabs: v6.5.11   || Navegación por pestañas en aplicaciones móviles.
+@react-navigation/native: v6.1.9         || Navegación fluida entre pantallas en React Native.
+@react-navigation/native-stack:          || v6.9.17Navegación en pila para apps móviles.
+@reduxjs/toolkit: v2.0.1                 || Gestión de estado simplificada en React.
+expo: v49.0.15                           || Plataforma y herramientas para apps universales con React Native.
+expo-status-bar: v1.6.0                  || Control de la barra de estado en apps Expo.
+react: v18.2.0                           || Biblioteca principal para interfaces de usuario en React.
+react-native: v0.72.6                    || Framework para construir apps móviles con JavaScript y React.
+react-native-safe-area-context: v4.6.3   || Gestión de márgenes seguros en React Native.
+react-native-screens: v3.22.0            || Mejora del rendimiento de la navegación en React Native.
+react-redux: v9.0.4                      || Integración de Redux con React para manejar estados.
+yup: v1.3.3                              || Validación de esquemas en JavaScript.
+expo-image-picker: v14.3.2               || Acceso a la cámara y galería en apps Expo.
+expo-file-system: v15.4.5                || Interacción con el sistema de archivos en apps Expo.
+expo-sqlite: v11.3.3                     || Acceso a bases de datos SQLite en apps Expo.
 
-**[@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native):** v6.1.9 - Navegación entre pantallas.
-
-**[@react-navigation/native-stack](https://www.npmjs.com/package/@react-navigation/native-stack):** v6.9.17 - Navegación en pila.
-
-**[@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit):** v2.0.1 - Gestión del estado simplificada.
-
-**[expo](https://www.npmjs.com/package/expo):** v49.0.15 - Plataforma de desarrollo.
-
-**[expo-status-bar](https://www.npmjs.com/package/expo-status-bar):** v1.6.0 - Control de la barra de estado.
-
-**[react](https://www.npmjs.com/package/react):** v18.2.0 - Biblioteca principal de React.
-
-**[react-native](https://www.npmjs.com/package/react-native):** v0.72.6 - Framework de desarrollo móvil.
-
-**[react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context):** v4.6.3 - Gestión de márgenes seguros.
-
-**[react-native-screens](https://www.npmjs.com/package/react-native-screens):** v3.22.0 - Mejora del rendimiento de la navegación.
-
-**[react-redux](https://www.npmjs.com/package/react-redux):** v9.0.4 - Integración de Redux con React.
-
-**[yup](https://www.npmjs.com/package/yup):** v1.3.3 - Validación de esquemas.
-
-**[expo-image-picker](https://www.npmjs.com/package/expo-image-picker):** v14.3.2 - Acceso a la cámara y galería.
-
-**[expo-file-system](https://www.npmjs.com/package/expo-file-system):** v15.4.5 - Interacción con el sistema de archivos.
-
-**[expo-sqlite](https://www.npmjs.com/package/expo-sqlite):** v11.3.3 - Acceso a bases de datos SQLite.
 ```
