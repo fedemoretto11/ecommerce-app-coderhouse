@@ -3,17 +3,16 @@
 
 
 
-### Descripcion
+### Descripcion 
 
 ***
 
-Este proyecto fue desarrollado en el marco del curso de Desarrollo de Apps de CoderHouse.  
+Este proyecto fue desarrollado en el marco del curso de _Desarrollo de Apps de CoderHouse_.  
 
-El mismo consiste en una adaptacion del sitio web realizado en el curso de React JS a aplicacion movil, utilizando React Native como lenguaje de programacion.  
+El mismo consiste en una adaptacion del sitio web realizado en el curso de React JS a aplicacion movil, utilizando React Native como lenguaje de programacion. _Si desea ver el proyecto web puede seguir el siguiente enlace:_ [Super Music Changuito Web](https://super-music-changuito.vercel.app/)
 
-Para mayor detalle, el proyecto consiste en un e-commerce funcional de una tienda de productos de musica denominada Super Music Changuito
 
-### Pre-requisitos 📋
+### Pre-requisitos
 
 _Que cosas necesitas para utilizar el repositorio_
 
@@ -31,13 +30,14 @@ _Que cosas necesitas para utilizar el repositorio_
 ---
 
 1. Abre una consola CMD y clona el repositorio a tu maquina local del siguiente Link
+
     ```bash
       git clone https://github.com/fedemoretto11/ecommerce-app-coderhouse
     ```
-2. Ejecuta el comando `cd ecommerce-app-coderhouse` para acceder a la carpeta que contiene el proyecto
-3. Instala las depencias necesarias del proyecto utilizando `npm install` o `npm i`
-4. Ejectuta `npx expo start` para inicializar el proyecto
-5. Dependiendo el dispositivo que uses:
+1. Ejecuta el comando `cd ecommerce-app-coderhouse` para acceder a la carpeta que contiene el proyecto
+1. Instala las depencias necesarias del proyecto utilizando `npm install` o `npm i`
+1. Ejectuta `npx expo start` para inicializar el proyecto
+1. Dependiendo el dispositivo que uses:
       1. En tu dispositivo movil escanea el codigo QR generado con tu APP `EXPO GO`
       1. En tu ordenador, teniendo Android Studio previamente instalado, ejectua la tecla `a` dentro de la consola para sea ejectuado en el emulador
 
@@ -47,7 +47,7 @@ _Que cosas necesitas para utilizar el repositorio_
 ```
 @react-navigation/bottom-tabs: v6.5.11   || Navegación por pestañas en aplicaciones móviles.
 @react-navigation/native: v6.1.9         || Navegación fluida entre pantallas en React Native.
-@react-navigation/native-stack:          || v6.9.17Navegación en pila para apps móviles.
+@react-navigation/native-stack: v6.9.17  || Navegación en pila para apps móviles.
 @reduxjs/toolkit: v2.0.1                 || Gestión de estado simplificada en React.
 expo: v49.0.15                           || Plataforma y herramientas para apps universales con React Native.
 expo-status-bar: v1.6.0                  || Control de la barra de estado en apps Expo.
@@ -62,5 +62,11 @@ expo-file-system: v15.4.5                || Interacción con el sistema de archi
 expo-sqlite: v11.3.3                     || Acceso a bases de datos SQLite en apps Expo.
 
 ```
+
+### Proximas implementaciones
+---
+
+-  **Integracion con API MercadoPago:** Una de la proximas mejoras a realizar en la App es la implementacion de la API de Mercado Pago a traves de su sandbox para mejorar asi la experiencia del usuario y darle un servicio de simulacion de compra completo
+- **Añadir seccion de envios:** Otra aspectos para mejorar la experiencias es agregar el planteo de opciones de envios 
 
 
