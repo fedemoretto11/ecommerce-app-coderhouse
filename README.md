@@ -50,6 +50,7 @@ _Que cosas necesitas para instalar el software y como instalarlas_
 
 ### Dependencias
 
+```
 **[@react-navigation/bottom-tabs](https://www.npmjs.com/package/@react-navigation/bottom-tabs):** v6.5.11 - Navegación por pestañas.
 
 **[@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native):** v6.1.9 - Navegación entre pantallas.
@@ -79,3 +80,4 @@ _Que cosas necesitas para instalar el software y como instalarlas_
 **[expo-file-system](https://www.npmjs.com/package/expo-file-system):** v15.4.5 - Interacción con el sistema de archivos.
 
 **[expo-sqlite](https://www.npmjs.com/package/expo-sqlite):** v11.3.3 - Acceso a bases de datos SQLite.
+```
