@@ -24,7 +24,7 @@ import { useGetProductByIdQuery } from '../services/shopService.js'
 import { AntDesign } from '@expo/vector-icons';
 
 
-const ProductDetailScreen = () => {
+const ProductDetailScreen = ({ navigation }) => {
 
   const dispatch = useDispatch()
   const [productSelected, setProductSelected] = useState({})
@@ -68,6 +68,25 @@ const ProductDetailScreen = () => {
     </View>
   )
 
+  const ConfirmModal = () => (
+    <Modal visible={modalVisible} animationType='slide' transparent={true}>
+      <View style={styles.modal}>
+        <View style={styles.innerModal}>
+          <Text style={styles.modalText}>Producto Agregado</Text>
+          <TouchableOpacity 
+            style={styles.modalBtn}
+            onPress={() => { 
+              setModalVisible(false) 
+              navigation.navigate('Categorias')
+            }}
+          >
+            <Text style={styles.btnText}>Volver</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
+  )
+
 
   return (
     <>
@@ -96,19 +115,8 @@ const ProductDetailScreen = () => {
               </TouchableOpacity>
             </View>
           </ScrollView>
-          <Modal visible={modalVisible} animationType='slide'>
-            <View style={styles.modal}>
-              <View style={styles.innerModal}>
-                <Text style={styles.modalText}>Producto Agregado</Text>
-                <TouchableOpacity 
-                  style={styles.modalBtn}
-                  onPress={() => { setModalVisible(false) }}
-                >
-                  <Text style={styles.btnText}>Volver</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Modal>
+          <ConfirmModal />
+          
         </>
       }
     </>
@@ -181,7 +189,9 @@ const styles = StyleSheet.create({
   modal: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    
   },
   innerModal: {
     backgroundColor: COLORS.secondary,

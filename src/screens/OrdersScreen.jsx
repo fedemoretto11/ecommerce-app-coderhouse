@@ -3,7 +3,6 @@ import {
   useState 
 } from 'react'
 import { 
-  ActivityIndicator,
   FlatList, Modal, StyleSheet, Text, TouchableOpacity, View 
 } from 'react-native'
 
@@ -14,6 +13,8 @@ import { COLORS } from '../const/colors'
 
 import OrderItem from '../components/OrderItem'
 import OrderItemDetail from '../components/OrderItemDetail'
+import Loader from '../components/Loader'
+import Error from '../components/Error'
 
 
 
@@ -63,21 +64,10 @@ const OrdersScreen = ({ navigation }) => {
   }
 
 
+  if (isLoading) ( <Loader /> )
+  if (error) ( <Error navigation={navigation} /> )
 
 
-
-
-  if (isLoading) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size='large' color={COLORS.primary} />
-      </View>
-    )
-  }
-  if (error) {
-    return <Text>Error: {error.message}</Text>
-
-  }
 
   
   return (
@@ -128,11 +118,6 @@ const OrdersScreen = ({ navigation }) => {
 export default OrdersScreen
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   modal: {
     flex: 1,
     justifyContent: "center",
