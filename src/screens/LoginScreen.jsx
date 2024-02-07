@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import Input from '../components/Input'
-import { COLORS } from '../global/colors'
+import { COLORS } from '../const/colors'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/authSlice'

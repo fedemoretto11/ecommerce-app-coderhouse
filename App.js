@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 
 import MainNavigator from './src/navigator/MainNavigator';
 
-import { COLORS } from './src/global/colors';
+import { COLORS } from './src/const/colors';
 
 import store from './src/store';
 import { init } from './src/db';

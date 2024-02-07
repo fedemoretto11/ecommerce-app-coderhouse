@@ -1,9 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
-import { COLORS } from "../global/colors";
+import { COLORS } from "../const/colors";
 
 const OrderItem = ({ order, setModalVisible, setOrderId }) => {
+
+
   return (
     <View style={styles.cartItemContainer}>
       <View>
@@ -13,7 +15,7 @@ const OrderItem = ({ order, setModalVisible, setOrderId }) => {
         <Text style={styles.createdAt}>
           Creada el {new Date(order.createdAt).toLocaleString('es-AR')}
         </Text>
-        <Text style={styles.total}>Total: ${order.total}</Text>
+        <Text style={styles.total}>Total: ${order.total.toLocaleString('es-AR')}</Text>
       </View>
       <TouchableOpacity 
         style={styles.searchIcon} 
@@ -32,6 +34,7 @@ export default OrderItem;
 
 const styles = StyleSheet.create({
   cartItemContainer: {
+    width: '95%',
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 10,
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
   orderNumber: {
     fontFamily: "Raleway-Regular",
     marginBottom: 5,
-    fontSize: 16,
+    fontSize: 14,
   },
   createdAt: {
     fontFamily: "Raleway-Light",

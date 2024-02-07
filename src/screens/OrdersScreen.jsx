@@ -9,15 +9,17 @@ import {
 import { useGetOrdersQuery } from '../services/shopService'
 import { useSelector } from 'react-redux'
 
-import { COLORS } from '../global/colors'
+import { COLORS } from '../const/colors'
 
 import OrderItem from '../components/OrderItem'
 import OrderItemDetail from '../components/OrderItemDetail'
+import Loader from '../components/Loader'
+import Error from '../components/Error'
 
 
 
 
-const OrdersScreen = () => {
+const OrdersScreen = ({ navigation }) => {
 
   const localId = useSelector(state => state.authReducer.localId)
   const localOrders = useSelector(state => state.orderReducer.orders)
@@ -62,44 +64,54 @@ const OrdersScreen = () => {
   }
 
 
+  if (isLoading) ( <Loader /> )
+  if (error) ( <Error navigation={navigation} /> )
 
 
-
-
-  if (isLoading) {
-    return <Text>Cargando</Text>
-
-  }
-  if (error) {
-    return <Text>Error: {error.message}</Text>
-
-  }
 
   
   return (
     <>
-      <FlatList
-        data={orderData}
-        renderItem={renderOrderItem}
-        keyExtractor={orderData?.orderId}
-      />
-      <Modal visible={modalVisible} animationType='fade' style={{ width: '100%' }}>
-        <View style={styles.modal}>
-          <View style={styles.innerModal}>
-            <FlatList 
-              data={orderSelected?.cartItems}
-              renderItem={renderItem}
-            />
-            <Text style={styles.modalText}>$ {orderSelected?.total}</Text>
-            <TouchableOpacity
-              style={styles.modalBtn}
-              onPress={() => {setModalVisible(false)}}
+      {
+        orderData.length > 0
+        ?
+        <>
+          <FlatList
+          data={orderData}
+          renderItem={renderOrderItem}
+          keyExtractor={orderData?.orderId}
+          />
+          <Modal visible={modalVisible} animationType='fade' transparent={true}>
+            <View style={styles.modal}>
+              <View style={styles.innerModal}>
+                <FlatList 
+                  data={orderSelected?.cartItems}
+                  renderItem={renderItem}
+                />
+                <Text style={styles.modalText}>$ {orderSelected?.total.toLocaleString('es-AR')}</Text>
+                <TouchableOpacity
+                  style={styles.modalBtn}
+                  onPress={() => {setModalVisible(false)}}
+                >
+                  <Text style={styles.btnText}>Volver</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+        </>
+        :
+        <View style={styles.emptyOrderContainer}>
+          <Text style={styles.emptyOrderText}>No hay ordenes</Text>
+          <View style={styles.cartConfirm}>
+            <TouchableOpacity 
+            style={styles.confirmButton} 
+            onPress={() =>{navigation.navigate('Categorias')}}
             >
-              <Text style={styles.btnText}>Volver</Text>
+              <Text style={styles.textConfirm}>Volver</Text>
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      }
     </>
   )
 }
@@ -110,23 +122,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLORS.secondary,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
   },
   innerModal: {
     width: '90%',
     margin: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: COLORS.white,
     borderRadius: 20,
     padding: 15,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
   modalText: {
     marginBottom: 20,
@@ -146,5 +152,27 @@ const styles = StyleSheet.create({
     fontFamily: "Raleway-Bold",
     fontSize: 20,
     color: COLORS.secondary
+  },
+  emptyOrderContainer: {
+    flex: 1,
+    marginTop: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 60,
+  },
+  emptyOrderText: {
+    fontFamily: 'Raleway-Bold',
+    color: COLORS.primary,
+    fontSize: 36
+  },
+  confirmButton:{
+    backgroundColor: COLORS.secondary,
+    padding:10,
+    borderRadius:10,
+  },
+  textConfirm:{
+    fontFamily:'Raleway-Bold',
+    fontSize:16,
+    color: '#fff'
   }
 })

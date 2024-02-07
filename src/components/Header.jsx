@@ -11,7 +11,7 @@ import {
 
 
 import { AntDesign } from "@expo/vector-icons";
-import { COLORS } from "../global/colors";
+import { COLORS } from "../const/colors";
 
 import { logout } from "../features/authSlice";
 import { deleteSession } from '../db'

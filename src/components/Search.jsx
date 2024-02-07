@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 import { EvilIcons, Entypo } from "@expo/vector-icons";
-import { COLORS } from "../global/colors";
+import { COLORS } from "../const/colors";
 
 const Search = ({ onSearchHandlerEvent }) => {
   const [searchInput, setSearchInput] = useState("");

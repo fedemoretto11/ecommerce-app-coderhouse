@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
 
-import { COLORS } from '../global/colors'
+import { COLORS } from '../const/colors'
 import { useDispatch, useSelector } from 'react-redux';
 import { setProfilePicture } from '../features/authSlice';
 import { usePostProfilePictureMutation } from '../services/userService';

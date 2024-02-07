@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { StyleSheet } from 'react-native'
 
 import Header from '../components/Header';
 import CartScreen from '../screens/CartScreen';
@@ -28,7 +27,3 @@ const CartNavigator = () => {
 
 
 export default CartNavigator
-
-const styles = StyleSheet.create({
-  
-})
