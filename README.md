@@ -15,40 +15,34 @@ Para mayor detalle, el proyecto consiste en un e-commerce funcional de una tiend
 
 ### Pre-requisitos 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+_Que cosas necesitas para utilizar el repositorio_
 
 ```
 -  Node.js
 -  Editor de codigo de su gusto
 -  Una de las siguientes opciones
-    A. Expo GO en tu dispositivo
+    A. Expo GO en tu dispositivo movil
     B. Android Studio en su ordernador
 
 ```
 
 
 ### Inicializacion del proyecto
+---
 
-1. Clona el repositorio a tu maquina local
-  ```bash
-    git clone https://github.com/fedemoretto11/ecommerce-app-coderhouse
-  ```
-2. Navega al directorio del proyecto
-  ```bash
-    cd ecommerce-app-coderhouse
-  ```
-3. Instala las depencias del proyecto utilizando NPM
-  ```bash
-    npm install
-  ```
-4. Inicia el proyecto
-  ```bash
-    npx expo start
-  ```
+1. Abre una consola CMD y clona el repositorio a tu maquina local del siguiente Link
+    ```bash
+      git clone https://github.com/fedemoretto11/ecommerce-app-coderhouse
+    ```
+2. Ejecuta el comando `cd ecommerce-app-coderhouse` para acceder a la carpeta que contiene el proyecto
+3. Instala las depencias necesarias del proyecto utilizando `npm install` o `npm i`
+4. Ejectuta `npx expo start` para inicializar el proyecto
+5. Dependiendo el dispositivo que uses:
+      1. En tu dispositivo movil escanea el codigo QR generado con tu APP `EXPO GO`
+      1. En tu ordenador, teniendo Android Studio previamente instalado, ejectua la tecla `a` dentro de la consola para sea ejectuado en el emulador
 
 ### Dependencias
-
-### Dependencias
+---
 
 ```
 @react-navigation/bottom-tabs: v6.5.11   || Navegación por pestañas en aplicaciones móviles.
@@ -68,3 +62,5 @@ expo-file-system: v15.4.5                || Interacción con el sistema de archi
 expo-sqlite: v11.3.3                     || Acceso a bases de datos SQLite en apps Expo.
 
 ```
+
+
