@@ -9,18 +9,23 @@ import {
   useDispatch, 
   useSelector 
 } from "react-redux";
+import { useState } from "react";
 
 import { usePostOrderMutation } from "../services/shopService";
 
 import { cleanCart } from "../features/cartSlice";
 import { addOrder } from "../features/orderSlice";
 
-import CartItem from "../components/Cartitem";
 import { COLORS } from "../const/colors";
+
+import CartItem from "../components/Cartitem";
+import ConfirmModal from "../components/ConfirmModal";
 
 const CartScreen = ({ navigation }) => {
 
   const dispatch = useDispatch()
+
+  const [modalVisible, setModalVisible] = useState(false)
   
   const cartItems = useSelector(state => state.cartReducer.value.items)
   const total = useSelector(state => state.cartReducer.value.total)
@@ -42,6 +47,7 @@ const CartScreen = ({ navigation }) => {
       .catch((error) => {
         console.error('Error posting order:', error);
       });
+    setModalVisible(true)
   }
   
 
@@ -87,6 +93,12 @@ const CartScreen = ({ navigation }) => {
           </View>
         </View>
       }
+      <ConfirmModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        navigation={navigation}
+        label="Compra realizada"
+      />
       
     
     </>

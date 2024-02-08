@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { FontAwesome } from '@expo/vector-icons';
@@ -7,6 +7,9 @@ import { COLORS } from '../const/colors.js'
 import { useGetUserDataQuery } from '../services/userService.js';
 import { useEffect, useState } from 'react';
 import { setUserData } from '../features/authSlice.js';
+
+import Loader from '../components/Loader.jsx'
+import Error from '../components/Error.jsx'
 
 
 
@@ -28,6 +31,9 @@ const ProfileScreen = ({ navigation }) => {
       setDatosUsuario(userData)
     }
   }, [userData])
+
+  if (isLoading) (<Loader />)
+  if (error) (<Error navigation={navigation} />)
 
   
 

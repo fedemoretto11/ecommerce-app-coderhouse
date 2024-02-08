@@ -22,6 +22,7 @@ import { addItem } from '../features/cartSlice.js'
 import { useGetProductByIdQuery } from '../services/shopService.js'
 
 import { AntDesign } from '@expo/vector-icons';
+import ConfirmModal from '../components/ConfirmModal.jsx'
 
 
 const ProductDetailScreen = ({ navigation }) => {
@@ -68,25 +69,6 @@ const ProductDetailScreen = ({ navigation }) => {
     </View>
   )
 
-  const ConfirmModal = () => (
-    <Modal visible={modalVisible} animationType='slide' transparent={true}>
-      <View style={styles.modal}>
-        <View style={styles.innerModal}>
-          <Text style={styles.modalText}>Producto Agregado</Text>
-          <TouchableOpacity 
-            style={styles.modalBtn}
-            onPress={() => { 
-              setModalVisible(false) 
-              navigation.navigate('Categorias')
-            }}
-          >
-            <Text style={styles.btnText}>Volver</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </Modal>
-  )
-
 
   return (
     <>
@@ -115,7 +97,12 @@ const ProductDetailScreen = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </ScrollView>
-          <ConfirmModal />
+          <ConfirmModal
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+            navigation={navigation}
+            label="Producto Agregado"
+          />
           
         </>
       }
