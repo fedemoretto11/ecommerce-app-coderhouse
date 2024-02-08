@@ -6,9 +6,9 @@
 
 Este proyecto fue desarrollado en el marco del curso de _Desarrollo de Apps de CoderHouse_.
 
-Este proyecto se basas en el desarrollo de un ecommerce funcional donde uno puede vivir la experiencia del usuario de explorar y elegir sus productos, agregarlos a un carrito, realizar la compra y registrarse e iniciar sesion para obtener un historial de su compra.
+Consiste en el desarrollo de un ecommerce funcional donde uno puede vivir la experiencia del usuario de explorar y elegir sus productos, agregarlos a un carrito, realizar la compra y registrarse e iniciar sesion para obtener un historial de su compra.
 
-El mismo consiste en una adaptacion del sitio web realizado en el curso de React JS a aplicacion movil, utilizando React Native como lenguaje de programacion. _Si desea ver el proyecto web puede seguir el siguiente enlace:_ [Super Music Changuito Web](https://super-music-changuito.vercel.app/)
+El mismo es una adaptacion del sitio web realizado en el curso de React JS a aplicacion movil, utilizando React Native como lenguaje de programacion. _Si desea ver el proyecto web puede seguir el siguiente enlace:_ [Super Music Changuito Web](https://super-music-changuito.vercel.app/)
 
 
 ### Pre-requisitos
@@ -81,7 +81,7 @@ _Gracias por tomarte el tiempo para explorar mi proyecto! Esta aplicación es el
 
 This Project was developed within the framework of the _CoderHouse App's Development Course_
 
-This project is based on the development of a functional ecommerce where users can experience searching and selecting products, adding them to a cart, making purchases, and registering and logging in to access their purchase history.
+Is based on the development of a functional ecommerce where users can experience searching and selecting products, adding them to a cart, making purchases, and registering and logging in to access their purchase history.
 
 It consists of an adaptation of the website created during the React JS course to a mobile application, using React Native as the programming language. _If you wish to view the web project, you can follow the link below:_ [Super Music Changuito Web](https://super-music-changuito.vercel.app/)
 
