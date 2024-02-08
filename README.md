@@ -9,7 +9,7 @@
 
 Este proyecto fue desarrollado en el marco del curso de _Desarrollo de Apps de CoderHouse_.  
 
-El mismo consiste en una adaptacion del sitio web realizado en el curso de React JS a aplicacion movil, utilizando React Native como lenguaje de programacion. _Si desea ver el proyecto web puede seguir el siguiente enlace:_ [Super Music Changuito Web](https://super-music-changuito.vercel.app/)
+El mismo consiste en una adaptacion del sitio web realizado en el curso de React JS a aplicacion movil, utilizando React Native como lenguaje de programacion. _Si desea ver el proyecto web puede seguir el siguiente enlace:_ [Super Music Changuito Web](https://super-music-changuito.vercel.app/){:target="_blank"}
 
 
 ### Pre-requisitos
