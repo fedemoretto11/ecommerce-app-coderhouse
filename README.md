@@ -4,9 +4,9 @@
 🇪🇸 Español
 ### Descripcion 
 
-***
+Este proyecto fue desarrollado en el marco del curso de _Desarrollo de Apps de CoderHouse_.
 
-Este proyecto fue desarrollado en el marco del curso de _Desarrollo de Apps de CoderHouse_.  
+Este proyecto se basas en el desarrollo de un ecommerce funcional donde uno puede vivir la experiencia del usuario de explorar y elegir sus productos, agregarlos a un carrito, realizar la compra y registrarse e iniciar sesion para obtener un historial de su compra.
 
 El mismo consiste en una adaptacion del sitio web realizado en el curso de React JS a aplicacion movil, utilizando React Native como lenguaje de programacion. _Si desea ver el proyecto web puede seguir el siguiente enlace:_ [Super Music Changuito Web](https://super-music-changuito.vercel.app/)
 
@@ -69,16 +69,19 @@ expo-sqlite: v11.3.3                     || Acceso a bases de datos SQLite en ap
 - **Añadir seccion de envios:** Otra aspectos para mejorar la experiencias es agregar el planteo de opciones de envios 
 
 
+
+_Gracias por tomarte el tiempo para explorar mi proyecto! Esta aplicación es el resultado de mi esfuerzo y aprendizaje durante el curso de Desarrollo de Aplicaciones de CoderHouse. Tu interés y apoyo significan mucho para mí en este viaje de aprendizaje y práctica. Espero que disfrutes explorando la aplicación tanto como yo disfruté creándola._
+
+
 ---
 
 🇺🇸 English
 
 ### Description 
 
-***
-
 This Project was developed within the framework of the _CoderHouse App's Development Course_
 
+This project is based on the development of a functional ecommerce where users can experience searching and selecting products, adding them to a cart, making purchases, and registering and logging in to access their purchase history.
 
 It consists of an adaptation of the website created during the React JS course to a mobile application, using React Native as the programming language. _If you wish to view the web project, you can follow the link below:_ [Super Music Changuito Web](https://super-music-changuito.vercel.app/)
 
@@ -137,3 +140,6 @@ expo-sqlite: v11.3.3                     || Access to SQLite databases in Expo A
 
 -  **Integrations with MercadoPago API:** One of the next improvements to be made in the App is the implementation of the MercadoPago API through it's sandbox to enhance the user experience and provide a complete simulated purchasing service
 - **Add shipping section:** Another aspect to improve the user experience is to add options for shipping
+
+
+_Thanks for taking the time to explore my project! This application is the result of my effort and learning during the CoderHouse App Development course. Your interest and support means a lot to me on this journey of learning and practice. I hope you enjoy exploring the app as much as I enjoyed developing it._
