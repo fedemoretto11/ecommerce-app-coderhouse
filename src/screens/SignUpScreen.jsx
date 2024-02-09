@@ -1,13 +1,22 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import Input from "../components/Input";
 import { useEffect, useState } from "react";
 import { useSignUpMutation } from "../services/authService";
 import { useDispatch } from "react-redux";
-import { setUser } from "../features/authSlice";
-import { COLORS } from "../global/colors";
+import { setUser, setUserData } from "../features/authSlice";
+import { COLORS } from "../const/colors";
 import { signUpSchema } from "../validations/signUp";
+import { usePostUserDataMutation } from "../services/userService";
+import { RANDOM_ADDRESS, RANDOM_CITIES, RANDOM_LASTNAMES, RANDOM_NAMES } from "../const/randomData";
+
+
+
 
 const SignupScreen = ({ navigation }) => {
+
+  const dispatch = useDispatch();
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -17,12 +26,28 @@ const SignupScreen = ({ navigation }) => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("")
 
   const [triggerSignup, result] = useSignUpMutation();
+  const [triggerPostData, resultPostData] = usePostUserDataMutation()
+
+
+  const randomData = {
+    nombre: RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)],
+    apellido: RANDOM_LASTNAMES[Math.floor(Math.random() * RANDOM_NAMES.length)],
+    direccion: RANDOM_ADDRESS[Math.floor(Math.random() * RANDOM_NAMES.length)],
+    localidad: RANDOM_CITIES[Math.floor(Math.random() * RANDOM_NAMES.length)]
+
+  }
+
 
   const onSubmit = () => {
 
     try {
       const validations = signUpSchema.validateSync({email, password, confirmPassword})
       triggerSignup({ email, password });
+      dispatch(setUserData(randomData))
+      triggerPostData({ localId, data: randomData})
+        .then((result) => {
+          console.log("Datos: ", result)
+        })
     } catch (error) {
       console.log("Error al registrar");
       switch(error.path) {
@@ -41,7 +66,6 @@ const SignupScreen = ({ navigation }) => {
     }
   };
 
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (result.data) {
@@ -51,21 +75,32 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Image 
+          source={require('../../assets/img/SuperMusicChanguitoLogo.png')}
+          style={styles.img}
+          resizeMode='cover'
+        />
+        <Text style={styles.titleText}>Super Music Changuito</Text>
+      </View>
       <Input 
         label="Email:" 
         onChange={setEmail} 
         error={emailError}
+        style={styles.input}
       />
       <Input 
         label="Contraseña:" 
         onChange={setPassword} 
         error={passwordError} 
-        isSecureEntry={true} />
+        isSecureEntry={true}
+        style={styles.input} />
       <Input
         label="Repetir contraseña:"
         onChange={setConfirmPassword}
         error={confirmPasswordError}
         isSecureEntry={true}
+        style={styles.input}
       />
       <TouchableOpacity style={styles.btn} onPress={onSubmit}>
         <Text style={styles.btnText}>Registrarme</Text>
@@ -92,10 +127,29 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-    gap: 10,
+    gap: 8,
+  },
+  titleContainer: {
+    marginBottom: 22,
+    gap: 16
+  },
+  titleText: {
+    color: COLORS.white,
+    fontFamily: "Raleway-Bold",
+    fontSize: 28,
+  },
+  img: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
+    alignSelf: 'center'
+  },
+  input: {
+    padding: 14,
+    fontSize: 18,
   },
   btn: {
-    padding: 10,
+    padding: 14,
     backgroundColor: COLORS.secondary,
     borderRadius: 8,
     margin: 5,
@@ -103,6 +157,7 @@ const styles = StyleSheet.create({
   btnText: {
     color: "#fff",
     fontFamily: "Raleway-Bold",
+    fontSize: 18
   },
   altContainer: {
     flexDirection: "row",
@@ -114,12 +169,12 @@ const styles = StyleSheet.create({
   subtitle: {
     color: "#fff",
     fontFamily: "Raleway-Bold",
-    fontSize: 12,
+    fontSize: 16,
   },
   subtitleLink: {
     fontFamily: "Raleway-Light",
     color: "#fff",
-    fontSize: 11,
+    fontSize: 16,
     textDecorationLine: "underline",
   },
 });

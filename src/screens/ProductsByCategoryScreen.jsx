@@ -1,9 +1,17 @@
-import { useEffect, useState } from 'react'
-import { FlatList, StyleSheet, Text } from 'react-native'
+import { 
+  useEffect, 
+  useState 
+} from 'react'
+import { 
+  FlatList, 
+} from 'react-native'
+import { useSelector } from 'react-redux'
+
 import ProductItem from '../components/ProductItem'
 import Search from '../components/Search'
-import { useSelector } from 'react-redux'
+
 import { useGetProductsByCategoryQuery } from '../services/shopService'
+import Loader from '../components/Loader'
 
 const ProductsByCategoryScreen = ({ navigation }) => {
 
@@ -32,31 +40,24 @@ const ProductsByCategoryScreen = ({ navigation }) => {
     setSearch(search)
   }
 
+  if (isLoading) {
+    return (
+      <Loader />
+    )
+  }
 
-  return (
+
+  return ( 
     <>
-      {
-        isLoading 
-        ?
-        <Text>Loading</Text> 
-        : 
-        <>
-          <Search onSearchHandlerEvent={onSearch} />
-          <FlatList 
-            data={productsByCategory}
-            renderItem={renderProductItem}
-            keyExtractor={item => item.id}
-          />
-        </>
-      }
+      <Search onSearchHandlerEvent={onSearch} />
+      <FlatList 
+        data={productsByCategory}
+        renderItem={renderProductItem}
+        keyExtractor={item => item.id}
+      />
     </>
   )
 }
 
 
 export default ProductsByCategoryScreen
-
-
-const styles = StyleSheet.create({
-
-})

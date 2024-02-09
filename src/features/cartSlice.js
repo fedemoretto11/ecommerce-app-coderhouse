@@ -4,9 +4,8 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     value: {
-      user: 'userLogged',
       updatedAt: Date.now().toLocaleString(),
-      total: null,
+      total: 0,
       items: []
     }
   },
@@ -33,19 +32,31 @@ export const cartSlice = createSlice({
         }
       } else {
         state.value.items.push(action.payload)
-        const total = state.value.items.reduce((acc, current) => acc += current.price * current.quantity, 0)
+        const total = state.value.items.reduce((acc, currentItem) => acc += currentItem.price * currentItem.quantity, 0)
         state.total = total
-
-        state = {
+        state.value = {
           ...state.value,
           total,
           updatedAt: Date.now().toLocaleString(),
         }
       }
-
     },
     removeItem: (state, action) => {
-
+      if(state.value.items.length > 0) {
+        const itemsUpdated = state.value.items.filter(item => item.id !== action.payload)
+        const total = itemsUpdated.reduce((acc, currentItem) => acc += currentItem.price * currentItem.quantity, 0)
+        state.total = total
+        state.value = {
+          ...state.value,
+          items: itemsUpdated,
+          total,
+          updatedAt: Date.now().toLocaleString(),
+        }
+      }
+    },
+    cleanCart: (state, action) => {
+      state.value.total = 0
+      state.value.items = []
     }
   }
 })
@@ -53,7 +64,8 @@ export const cartSlice = createSlice({
 
 export const { 
   addItem, 
-  removeItem 
+  removeItem,
+  cleanCart
 } = cartSlice.actions
 
 export default cartSlice.reducer

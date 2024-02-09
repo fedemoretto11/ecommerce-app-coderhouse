@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import Input from '../components/Input'
-import { COLORS } from '../global/colors'
+import { COLORS } from '../const/colors'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/authSlice'
 import { useLoginMutation } from '../services/authService'
+import { insertSession } from '../db'
 
 const LoginScreen = ({ navigation }) => {
 
@@ -13,6 +14,11 @@ const LoginScreen = ({ navigation }) => {
 
     const [triggerLogin, result] = useLoginMutation();
 
+
+
+    const dispatch = useDispatch()
+
+
     const onSubmit = () => {
       triggerLogin({ email, password })
       console.log(result)
@@ -20,16 +26,32 @@ const LoginScreen = ({ navigation }) => {
         console.log(result.error)
       }
     }
-    const dispatch = useDispatch()
+
 
     useEffect(()=>{
-        if(result.data){
-            dispatch(setUser(result.data))
-        }
+      if(result.data){
+        console.log("Result Data: ", result.data)
+        dispatch(setUser(result.data))
+        insertSession({
+          email: result.data.email,
+          token: result.data.idToken,
+          localId: result.data.localId
+        })
+          .then(result => console.log(result))
+          .catch(error => console.log(error.message))
+      }
     }, [result])
 
     return (
         <View style={styles.container}>
+            <View style={styles.titleContainer}>
+              <Image 
+                source={require('../../assets/img/SuperMusicChanguitoLogo.png')}
+                style={styles.img}
+                resizeMode='cover'
+              />
+              <Text style={styles.titleText}>Super Music Changuito</Text>
+            </View>
             <Input
                 label="Email:"
                 onChange={setEmail}
@@ -45,7 +67,7 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.altContainer}>
                 <Text style={styles.subtitle}>¿No tienes una cuenta?</Text>
                 <TouchableOpacity onPress={() => { navigation.navigate("Signup") }}>
-                    <Text style={styles.subtitleLink}>Crear una</Text>
+                    <Text style={styles.subtitleLink}>Registrate</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -60,18 +82,33 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       flex: 1,
-      gap: 10,
+      gap: 18,
+    },
+    titleContainer: {
+      marginBottom: 42,
+      gap: 16
+    },
+    titleText: {
+      color: COLORS.white,
+      fontFamily: "Raleway-Bold",
+      fontSize: 28,
+    },
+    img: {
+      width: 100,
+      height: 100,
+      borderRadius: 20,
+      alignSelf: 'center'
     },
     btn: {
-      padding: 10,
+      padding: 14,
       backgroundColor: COLORS.secondary,
       borderRadius: 8,
-      margin: 5,
-  
+      margin: 8,
     },
     btnText: {
       color: "#fff",
-      fontFamily: "Raleway-Bold"
+      fontFamily: "Raleway-Bold",
+      fontSize: 18
     },
     altContainer: {
       flexDirection: 'row',
@@ -83,12 +120,12 @@ const styles = StyleSheet.create({
     subtitle: {
       color: "#fff",
       fontFamily: "Raleway-Bold",
-      fontSize: 12,
+      fontSize: 16,
     },
     subtitleLink: {
       fontFamily: "Raleway-Light",
       color: "#fff",
-      fontSize: 11,
+      fontSize: 16,
       textDecorationLine: 'underline'
     }
   })

@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import Header from "../components/Header";
 import ProfileScreen from "../screens/ProfileScreen";
 import ImageSelectorScreen from "../screens/ImageSelectorScreen";
+import DataScreen from "../screens/DataScreen";
 
 
 const ProfileNavigator = () => {
@@ -29,6 +30,11 @@ const ProfileNavigator = () => {
       <Stack.Screen 
         name="Seleccionar Imagen"
         component={ImageSelectorScreen}
+      />
+
+      <Stack.Screen 
+        name="Cargar Datos"
+        component={DataScreen}
       />
 
 
