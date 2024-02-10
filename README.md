@@ -10,7 +10,6 @@ Consiste en el desarrollo de un ecommerce funcional donde uno puede vivir la exp
 
 El mismo es una adaptacion del sitio web realizado en el curso de React JS a aplicacion movil, utilizando React Native como lenguaje de programacion. _Si desea ver el proyecto web puede seguir el siguiente enlace:_ [Super Music Changuito Web](https://super-music-changuito.vercel.app/)
 
-
 ### Pre-requisitos
 
 _Que cosas necesitas para utilizar el repositorio_
@@ -68,6 +67,12 @@ expo-sqlite: v11.3.3                     || Acceso a bases de datos SQLite en ap
 -  **Integracion con API MercadoPago:** Una de la proximas mejoras a realizar en la App es la implementacion de la API de Mercado Pago a traves de su sandbox para mejorar asi la experiencia del usuario y darle un servicio de simulacion de compra completo.
 - **Añadir seccion de envios:** Otra aspectos para mejorar la experiencias es agregar el planteo de opciones de envios.
 - **Modificar momento de inicio de sesion:** Actualmente, el usuario debe registrarse e iniciar sesión al abrir la aplicación. La modificación a implementar consiste en permitir que el usuario realice estas acciones solo cuando necesite confirmar una compra o verificar información personal, como datos de usuario u órdenes pasadas. De esta manera, se busca mejorar la experiencia del usuario al brindarle más flexibilidad y reducir las barreras de entrada al sistema.
+
+
+### Instalador APK
+
+Dentro de la carpeta apk va a poder encontrar un archivo llamado `super-music-changuito.apk` que le permitira instalar la version 1.0.0 en su dispositivo movil. **_Actualmente solo disponible para Android_**
+
 
 
 
@@ -142,6 +147,16 @@ expo-sqlite: v11.3.3                     || Access to SQLite databases in Expo A
 -  **Integrations with MercadoPago API:** One of the next improvements to be made in the App is the implementation of the MercadoPago API through it's sandbox to enhance the user experience and provide a complete simulated purchasing service.
 - **Add shipping section:** Another aspect to improve the user experience is to add options for shipping.
 - **Modify login timing:** Currently, the user must register and log in upon opening the application. The modification to be implemented involves allowing the user to perform these actions only when they need to confirm a purchase or verify personal information, such as user data or past orders. This way, we aim to enhance the user experience by providing more flexibility and reducing entry barriers into the system.
+
+
+### APK Installer
+
+Inside the apk folder, you will find a file called `super-music-changuito.apk` that will allow you to install version 1.0.0 on your mobile device. **_Currently only available for Android_**
+
+
+
+
+
 
 
 _Thanks for taking the time to explore my project! This application is the result of my effort and learning during the CoderHouse App Development course. Your interest and support means a lot to me on this journey of learning and practice. I hope you enjoy exploring the app as much as I enjoyed developing it._
